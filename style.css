@@ -894,8 +894,41 @@ section:not(#hero):not(:last-of-type)::after {
 }
 
 /* ============================================================
-   FOOTER
+   QUOTE BOX
 ============================================================ */
+.quote-box {
+  max-width: 620px;
+  margin: 0 auto 2rem;
+  padding: 1.75rem 2rem;
+  text-align: center;
+  position: relative;
+}
+.quote-mark {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 4rem;
+  line-height: 0.5;
+  color: var(--cyan);
+  opacity: 0.4;
+  margin-bottom: 0.75rem;
+}
+.quote-text {
+  font-size: 1rem;
+  color: var(--text-2);
+  line-height: 1.75;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+  min-height: 3rem;
+  transition: opacity 0.4s ease;
+}
+.quote-author {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  opacity: 0.7;
+}
 footer {
   padding: 2rem 0;
   border-top: 1px solid var(--border);
