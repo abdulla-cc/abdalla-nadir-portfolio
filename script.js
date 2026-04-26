@@ -21,13 +21,16 @@ const quotes = [
   { text: "Numbers have an important story to tell. They rely on you to give them a clear and convincing voice.", author: "Stephen Few" },
 ];
 
-const quoteText   = document.getElementById('quoteText');
-const quoteAuthor = document.getElementById('quoteAuthor');
-
 // Pick a random quote — different on each page load
-const random = quotes[Math.floor(Math.random() * quotes.length)];
-quoteText.textContent   = random.text;
-quoteAuthor.textContent = `— ${random.author}`;
+window.addEventListener('DOMContentLoaded', () => {
+  const quoteText   = document.getElementById('quoteText');
+  const quoteAuthor = document.getElementById('quoteAuthor');
+  if (quoteText && quoteAuthor) {
+    const random = quotes[Math.floor(Math.random() * quotes.length)];
+    quoteText.textContent   = random.text;
+    quoteAuthor.textContent = `— ${random.author}`;
+  }
+});
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ===== NAVBAR: Add .scrolled class on scroll ===== */
