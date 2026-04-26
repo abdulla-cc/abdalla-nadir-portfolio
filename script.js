@@ -7,7 +7,27 @@
    - Footer year
 ====================================================== */
 
-/* ===== FOOTER YEAR ===== */
+/* ===== ROTATING QUOTES ===== */
+const quotes = [
+  { text: "Data is the new oil. It's valuable, but if unrefined it cannot really be used.", author: "Clive Humby" },
+  { text: "The goal is to turn data into information, and information into insight.", author: "Carly Fiorina" },
+  { text: "Without data, you're just another person with an opinion.", author: "W. Edwards Deming" },
+  { text: "In God we trust. All others must bring data.", author: "W. Edwards Deming" },
+  { text: "It is a capital mistake to theorize before one has data.", author: "Arthur Conan Doyle" },
+  { text: "Data really powers everything that we do.", author: "Jeff Weiner" },
+  { text: "Torture the data, and it will confess to anything.", author: "Ronald Coase" },
+  { text: "The world is one big data problem.", author: "Andrew McAfee" },
+  { text: "Data is not information, information is not knowledge, knowledge is not understanding.", author: "Clifford Stoll" },
+  { text: "Numbers have an important story to tell. They rely on you to give them a clear and convincing voice.", author: "Stephen Few" },
+];
+
+const quoteText   = document.getElementById('quoteText');
+const quoteAuthor = document.getElementById('quoteAuthor');
+
+// Pick a random quote — different on each page load
+const random = quotes[Math.floor(Math.random() * quotes.length)];
+quoteText.textContent   = random.text;
+quoteAuthor.textContent = `— ${random.author}`;
 document.getElementById('year').textContent = new Date().getFullYear();
 
 /* ===== NAVBAR: Add .scrolled class on scroll ===== */
