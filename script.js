@@ -8,6 +8,8 @@
 ====================================================== */
 
 /* ===== NAME PRONUNCIATION (Web Speech API) ===== */
+let loadedVoices = [];
+
 function speakName() {
   const btn = document.getElementById('speakNameBtn');
 
@@ -20,31 +22,37 @@ function speakName() {
   // Cancel any ongoing speech
   speechSynthesis.cancel();
 
-  const utterance = new SpeechSynthesisUtterance('Abdalla Nadir');
-  utterance.lang = 'en-US';
-  utterance.rate = 0.85;
-  utterance.pitch = 1;
+  // Small delay — Chrome needs time after cancel() before new speak()
+  setTimeout(() => {
+    const utterance = new SpeechSynthesisUtterance('Abdalla Nadir');
+    utterance.lang = 'en-US';
+    utterance.rate = 0.85;
+    utterance.pitch = 1;
+    utterance.volume = 1;
 
-  // Try to pick a clear, natural English voice
-  const voices = speechSynthesis.getVoices();
-  const preferred = voices.find(v =>
-    v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('Daniel'))
-  ) || voices.find(v => v.lang.startsWith('en'));
+    // Pick a clear English voice
+    const voices = loadedVoices.length ? loadedVoices : speechSynthesis.getVoices();
+    const preferred = voices.find(v =>
+      v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('Daniel'))
+    ) || voices.find(v => v.lang.startsWith('en-US'))
+      || voices.find(v => v.lang.startsWith('en'));
 
-  if (preferred) utterance.voice = preferred;
+    if (preferred) utterance.voice = preferred;
 
-  // Visual feedback — add speaking class for wave animation
-  btn.classList.add('speaking');
-  utterance.onend  = () => btn.classList.remove('speaking');
-  utterance.onerror = () => btn.classList.remove('speaking');
+    // Visual feedback
+    btn.classList.add('speaking');
+    utterance.onend   = () => btn.classList.remove('speaking');
+    utterance.onerror = () => btn.classList.remove('speaking');
 
-  speechSynthesis.speak(utterance);
+    speechSynthesis.speak(utterance);
+  }, 120);
 }
 
 // Preload voices (some browsers load them asynchronously)
 if ('speechSynthesis' in window) {
-  speechSynthesis.getVoices();
-  speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+  function cacheVoices() { loadedVoices = speechSynthesis.getVoices(); }
+  cacheVoices();
+  speechSynthesis.onvoiceschanged = cacheVoices;
 }
 
 /* ===== THEME TOGGLE ===== */
