@@ -7,6 +7,46 @@
    - Footer year
 ====================================================== */
 
+/* ===== NAME PRONUNCIATION (Web Speech API) ===== */
+function speakName() {
+  const btn = document.getElementById('speakNameBtn');
+
+  // Fallback for unsupported browsers
+  if (!('speechSynthesis' in window)) {
+    alert('Voice playback is not supported on this browser.');
+    return;
+  }
+
+  // Cancel any ongoing speech
+  speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance('Abdalla Nadir');
+  utterance.lang = 'en-US';
+  utterance.rate = 0.85;
+  utterance.pitch = 1;
+
+  // Try to pick a clear, natural English voice
+  const voices = speechSynthesis.getVoices();
+  const preferred = voices.find(v =>
+    v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha') || v.name.includes('Daniel'))
+  ) || voices.find(v => v.lang.startsWith('en'));
+
+  if (preferred) utterance.voice = preferred;
+
+  // Visual feedback — add speaking class for wave animation
+  btn.classList.add('speaking');
+  utterance.onend  = () => btn.classList.remove('speaking');
+  utterance.onerror = () => btn.classList.remove('speaking');
+
+  speechSynthesis.speak(utterance);
+}
+
+// Preload voices (some browsers load them asynchronously)
+if ('speechSynthesis' in window) {
+  speechSynthesis.getVoices();
+  speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+}
+
 /* ===== THEME TOGGLE ===== */
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon   = themeToggle.querySelector('.theme-icon');
