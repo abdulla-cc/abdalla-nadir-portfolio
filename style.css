@@ -390,84 +390,90 @@ body.light-mode { background: var(--bg); }
   background-clip: text;
 }
 
-/* ---- Name pronunciation button ---- */
-.hero-name-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-}
-
+/* ---- Name pronunciation button (pill style) ---- */
 .name-speak-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,215,0,0.2);
+  border: 1px solid rgba(255,215,0,0.25);
   background: rgba(255,215,0,0.06);
+  border-radius: 100px;
+  padding: 0.5rem 1.3rem;
   cursor: pointer;
   transition: var(--transition);
-  flex-shrink: 0;
-  position: relative;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  margin-bottom: 0.5rem;
+  animation: fadeUp 0.8s 0.15s ease both;
+}
+
+.speak-btn-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .name-speak-btn .speak-icon {
   color: var(--gold);
+  flex-shrink: 0;
   transition: var(--transition);
+}
+
+.speak-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  white-space: nowrap;
 }
 
 .name-speak-btn:hover {
   background: rgba(255,215,0,0.14);
-  border-color: rgba(255,215,0,0.45);
-  transform: scale(1.12);
-  box-shadow: 0 0 20px rgba(255,215,0,0.2);
+  border-color: rgba(255,215,0,0.5);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 24px rgba(255,215,0,0.25), 0 4px 16px rgba(0,0,0,0.3);
 }
 
 .name-speak-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.97);
 }
 
 /* Wave animation while speaking */
+.name-speak-btn.speaking {
+  border-color: rgba(255,215,0,0.5);
+  background: rgba(255,215,0,0.12);
+  box-shadow: 0 0 20px rgba(255,215,0,0.2);
+}
 .name-speak-btn.speaking .speak-wave-1 {
-  animation: waveAnim 0.6s ease-in-out infinite alternate;
+  animation: waveAnim 0.5s ease-in-out infinite alternate;
 }
 .name-speak-btn.speaking .speak-wave-2 {
-  animation: waveAnim 0.6s 0.15s ease-in-out infinite alternate;
+  animation: waveAnim 0.5s 0.15s ease-in-out infinite alternate;
 }
 
 @keyframes waveAnim {
-  0%   { opacity: 0.3; }
+  0%   { opacity: 0.2; }
   100% { opacity: 1; }
 }
 
-/* Light mode adjustments */
+/* Light mode */
 body.light-mode .name-speak-btn {
   border-color: rgba(184,134,11,0.25);
-  background: rgba(184,134,11,0.08);
+  background: rgba(184,134,11,0.06);
 }
 body.light-mode .name-speak-btn:hover {
-  background: rgba(184,134,11,0.16);
+  background: rgba(184,134,11,0.14);
   border-color: rgba(184,134,11,0.5);
-  box-shadow: 0 0 20px rgba(184,134,11,0.15);
+  box-shadow: 0 0 24px rgba(184,134,11,0.18);
 }
+body.light-mode .speak-label { color: var(--gold); }
 
-/* Responsive — slightly smaller on mobile */
+/* Responsive */
 @media (max-width: 640px) {
-  .name-speak-btn {
-    width: 36px;
-    height: 36px;
-  }
-  .name-speak-btn .speak-icon {
-    width: 18px;
-    height: 18px;
-  }
-  .hero-name-row {
-    gap: 0.5rem;
-  }
+  .name-speak-btn { padding: 0.4rem 1rem; }
+  .speak-label { font-size: 0.72rem; }
+  .name-speak-btn .speak-icon { width: 15px; height: 15px; }
 }
 
 .hero-desc {
