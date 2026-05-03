@@ -822,22 +822,64 @@ section:not(#hero):not(:last-of-type)::after {
   padding: 0.25rem 0.7rem;
   border-radius: 100px;
 }
-.project-footer {
+.project-actions {
   border-top: 1px solid var(--border);
   padding-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
-.project-link {
+.proj-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.875rem;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
   font-weight: 500;
-  color: var(--gold);
+  text-decoration: none;
+  cursor: pointer;
   transition: var(--transition);
+  white-space: nowrap;
 }
-.project-link:hover {
-  color: var(--gold-light);
-  gap: 0.6rem;
+
+/* Primary — gold gradient fill */
+.proj-btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #0a0800;
+  font-weight: 600;
+  box-shadow: 0 0 16px rgba(255,215,0,0.2);
+}
+.proj-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(255,215,0,0.4);
+}
+
+/* Secondary — subtle gold surface */
+.proj-btn-secondary {
+  background: rgba(255,215,0,0.08);
+  border: 1px solid rgba(255,215,0,0.18);
+  color: var(--gold);
+}
+.proj-btn-secondary:hover {
+  background: rgba(255,215,0,0.14);
+  border-color: rgba(255,215,0,0.35);
+  transform: translateY(-2px);
+}
+
+/* Outline — transparent with gold border */
+.proj-btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+}
+.proj-btn-outline:hover {
+  border-color: rgba(255,215,0,0.3);
+  color: var(--gold);
+  background: rgba(255,215,0,0.05);
+  transform: translateY(-2px);
 }
 
 /* ============================================================
