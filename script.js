@@ -7,6 +7,22 @@
    - Footer year
 ====================================================== */
 
+/* ===== THEME TOGGLE ===== */
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon   = themeToggle.querySelector('.theme-icon');
+
+if (localStorage.getItem('theme') === 'light') {
+  document.body.classList.add('light-mode');
+  themeIcon.textContent = '🌙';
+}
+
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+  const isLight = document.body.classList.contains('light-mode');
+  themeIcon.textContent = isLight ? '🌙' : '☀️';
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
+
 /* ===== ROTATING QUOTES ===== */
 const quotes = [
   { text: "Data is the new oil. It's valuable, but if unrefined it cannot really be used.", author: "Clive Humby" },
@@ -128,12 +144,12 @@ sections.forEach(s => sectionObserver.observe(s));
     mouseForce:      0.06,     // how hard particles repel from cursor
     lineOpacity:     0.18,     // max opacity of connection lines
     particleOpacity: 0.75,     // particle opacity
-    // Colour palette — blue / cyan / soft purple
+    // Colour palette — gold tones
     colors: [
-      'rgba(99, 179, 237,',   // blue
-      'rgba(79, 209, 197,',   // cyan
-      'rgba(159,122,234,',    // purple
-      'rgba(144,205,244,',    // light blue
+      'rgba(255, 215,   0,',   // gold
+      'rgba(255, 229, 102,',   // light gold
+      'rgba(184, 134,  11,',   // dark gold
+      'rgba(255, 193,   7,',   // amber gold
     ],
   };
 
@@ -237,7 +253,7 @@ sections.forEach(s => sectionObserver.observe(s));
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(99,179,237,${alpha})`;
+          ctx.strokeStyle = `rgba(255,215,0,${alpha})`;
           ctx.lineWidth   = 0.6;
           ctx.stroke();
         }
