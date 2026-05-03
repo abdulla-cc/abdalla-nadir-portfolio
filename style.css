@@ -699,6 +699,28 @@ section:not(#hero):not(:last-of-type)::after {
   position: relative;
   overflow: hidden;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.project-preview {
+  margin: -2rem -2rem 1.25rem -2rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.project-preview a {
+  display: block;
+  line-height: 0;
+}
+.project-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: brightness(0.92);
+}
+.project-card:hover .project-preview img {
+  transform: scale(1.03);
+  filter: brightness(1);
 }
 .project-card::before {
   content: '';
