@@ -269,7 +269,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub
             </a>
-            <a href="#" class="proj-btn proj-btn-outline">Case Study</a>
+            <button onclick="openCaseStudy(1)" class="proj-btn proj-btn-outline">📋 Case Study</button>
           </div>
         </div>
 
@@ -320,7 +320,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub
             </a>
-            <a href="#" class="proj-btn proj-btn-outline">Case Study</a>
+            <button onclick="openCaseStudy(2)" class="proj-btn proj-btn-outline">📋 Case Study</button>
           </div>
         </div>
 
@@ -361,7 +361,7 @@
           </div>
           <div class="project-actions">
             <a href="db-project/index.html" class="proj-btn proj-btn-primary">View Project</a>
-            <a href="#" class="proj-btn proj-btn-outline">Case Study</a>
+            <button onclick="openCaseStudy(3)" class="proj-btn proj-btn-outline">📋 Case Study</button>
           </div>
         </div>
 
@@ -506,6 +506,20 @@
       <p>Designed & built by Abdalla Nadir · <span id="year"></span></p>
     </div>
   </footer>
+
+  <!-- ===== CASE STUDY MODAL ===== -->
+  <div id="caseStudyModal" class="cs-overlay" role="dialog" aria-modal="true" aria-label="Case Study">
+    <div class="cs-modal glass">
+      <div class="cs-modal-header">
+        <div>
+          <span class="cs-tag" id="csTag"></span>
+          <h2 class="cs-title" id="csTitle"></h2>
+        </div>
+        <button class="cs-close" onclick="closeCaseStudy()" aria-label="Close">✕</button>
+      </div>
+      <div class="cs-body" id="csBody"></div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
