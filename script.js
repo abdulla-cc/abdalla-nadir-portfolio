@@ -7,6 +7,90 @@
    - Footer year
 ====================================================== */
 
+/* ===== CASE STUDY MODAL ===== */
+const caseStudies = [
+  {
+    tag: 'Excel · BI',
+    title: 'Retail Sales Data Analysis',
+    problem: 'Analyze retail sales performance and identify trends across region, category, and product segments.',
+    dataset: 'Kaggle Superstore dataset — 9,800+ rows of transactional sales data.',
+    tools: ['Microsoft Excel', 'Pivot Tables', 'Dynamic Slicers', 'KPI Dashboard'],
+    process: 'Cleaned raw data, checked for missing values and inconsistencies. Created multi-dimensional pivot tables. Analyzed sales, profit, and quantity trends. Built an interactive dashboard with slicers for drill-down analysis.',
+    insights: 'Identified sales and profit patterns across regions, categories, and sub-categories. Found key high-performing and underperforming segments.',
+    output: 'Interactive Excel dashboard with dynamic slicers, KPI cards, and charts covering regional and category-level performance.',
+    learned: 'Improved Excel data cleaning, pivot table analysis, dashboard design, and business storytelling skills.'
+  },
+  {
+    tag: 'Power BI · DAX',
+    title: 'HR Analytics Dashboard',
+    problem: 'Understand employee attrition and identify the main factors linked to employees leaving the organization.',
+    dataset: 'IBM HR Analytics dataset — 1,470 employee records with 35 attributes.',
+    tools: ['Power BI', 'DAX', 'Excel', 'Data Modeling'],
+    process: 'Cleaned and transformed the data in Excel. Created calculated DAX measures for attrition rate and KPIs. Built 6+ interactive visuals and added slicers for department, gender, and attrition filters.',
+    insights: 'Overall attrition rate was 16.12%. R&D had the highest attrition (133 employees). Overtime, job role, and age group (28–35) were the strongest attrition factors.',
+    output: 'Interactive Power BI dashboard showing attrition by department, job role, gender, age group, overtime, and income level.',
+    learned: 'Improved Power BI, DAX measures, HR analytics, dashboard layout design, and data storytelling skills.'
+  },
+  {
+    tag: 'SQL · Database',
+    title: 'Job Application System Database',
+    problem: 'Design a structured, normalized relational database to manage job applications, interviews, and offer statuses efficiently.',
+    dataset: 'Custom-designed sample data — applicants, jobs, interviews, interviewers, documents, and job offers.',
+    tools: ['MySQL / MariaDB', 'SQL DDL & DML', 'ERD Design', 'Normalisation (3NF)'],
+    process: 'Designed the full ERD, normalized tables from 1NF to 3NF. Wrote DDL scripts to create all tables with primary/foreign keys. Implemented triggers, stored procedures, and custom SQL functions.',
+    insights: 'A normalized 3NF schema eliminates data duplication and improves integrity. Auto-triggers on offer status changes streamline applicant notifications.',
+    output: 'SQL-based job application database with 6 normalized tables, triggers, stored procedures (GetJobOffersForApplicant, GetJobsByLocation), and functions (CountJobOffersForJob, CalculateAverageSalary).',
+    learned: 'Improved SQL querying, database normalization, schema design, trigger logic, and understanding of relational database systems.'
+  }
+];
+
+function buildSection(icon, label, content, extraClass = '') {
+  return `
+    <div class="cs-section ${extraClass}">
+      <div class="cs-section-label"><span class="cs-icon">${icon}</span>${label}</div>
+      ${content}
+    </div>`;
+}
+
+function openCaseStudy(n) {
+  const cs = caseStudies[n - 1];
+  if (!cs) return;
+  document.getElementById('csTag').textContent = cs.tag;
+  document.getElementById('csTitle').textContent = cs.title;
+
+  const toolsHtml = `<div class="cs-tools">${cs.tools.map(t => `<span class="cs-tool-chip">${t}</span>`).join('')}</div>`;
+
+  document.getElementById('csBody').innerHTML =
+    buildSection('🎯', 'Problem', `<p>${cs.problem}</p>`) +
+    buildSection('📊', 'Dataset', `<p>${cs.dataset}</p>`) +
+    buildSection('🛠', 'Tools Used', toolsHtml) +
+    buildSection('⚙️', 'Process', `<p>${cs.process}</p>`, 'full-width') +
+    buildSection('💡', 'Key Insights', `<p>${cs.insights}</p>`, 'full-width') +
+    buildSection('📁', 'Final Output', `<p>${cs.output}</p>`, 'full-width') +
+    buildSection('🎓', 'What I Learned', `<p>${cs.learned}</p>`, 'full-width cs-learned');
+
+  const overlay = document.getElementById('caseStudyModal');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCaseStudy() {
+  document.getElementById('caseStudyModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close on backdrop click
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('caseStudyModal').addEventListener('click', function(e) {
+    if (e.target === this) closeCaseStudy();
+  });
+});
+
+// Close on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeCaseStudy();
+});
+
 /* ===== NAME PRONUNCIATION (Web Speech API) ===== */
 let loadedVoices = [];
 
