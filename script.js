@@ -10,37 +10,52 @@
 /* ===== CASE STUDY MODAL ===== */
 const caseStudies = [
   {
-    tag: 'Excel · BI',
+    tag: 'Excel',
     title: 'Retail Sales Data Analysis',
-    problem: 'Analyze retail sales performance and identify trends across region, category, and product segments.',
-    dataset: 'Kaggle Superstore dataset — 9,800+ rows of transactional sales data.',
-    tools: ['Microsoft Excel', 'Pivot Tables', 'Dynamic Slicers', 'KPI Dashboard'],
-    process: 'Cleaned raw data, checked for missing values and inconsistencies. Created multi-dimensional pivot tables. Analyzed sales, profit, and quantity trends. Built an interactive dashboard with slicers for drill-down analysis.',
-    insights: 'Identified sales and profit patterns across regions, categories, and sub-categories. Found key high-performing and underperforming segments.',
-    output: 'Interactive Excel dashboard with dynamic slicers, KPI cards, and charts covering regional and category-level performance.',
-    learned: 'Improved Excel data cleaning, pivot table analysis, dashboard design, and business storytelling skills.'
+    overview: 'An Excel-based retail sales analysis project focused on understanding sales, profit, quantity, and category performance using an interactive dashboard.',
+    problem: 'Analyze retail sales performance and identify trends across regions, categories, and product segments.',
+    dataset: 'Superstore dataset with 9,800+ rows.',
+    tools: ['Excel', 'Pivot Tables', 'Slicers', 'Dashboard Design'],
+    process: 'Cleaned the dataset, checked for missing values and inconsistencies, created pivot tables, analyzed sales/profit/quantity trends, and built an interactive Excel dashboard.',
+    insights: 'Identified sales and profit patterns across regions, categories, and sub-categories.',
+    output: 'Interactive Excel dashboard with slicers, KPI cards, and visual summaries.',
+    learned: 'Improved my skills in Excel data cleaning, pivot table analysis, dashboard design, and business storytelling.'
   },
   {
-    tag: 'Power BI · DAX',
+    tag: 'Power BI',
     title: 'HR Analytics Dashboard',
-    problem: 'Understand employee attrition and identify the main factors linked to employees leaving the organization.',
-    dataset: 'IBM HR Analytics dataset — 1,470 employee records with 35 attributes.',
-    tools: ['Power BI', 'DAX', 'Excel', 'Data Modeling'],
-    process: 'Cleaned and transformed the data in Excel. Created calculated DAX measures for attrition rate and KPIs. Built 6+ interactive visuals and added slicers for department, gender, and attrition filters.',
-    insights: 'Overall attrition rate was 16.12%. R&D had the highest attrition (133 employees). Overtime, job role, and age group (28–35) were the strongest attrition factors.',
-    output: 'Interactive Power BI dashboard showing attrition by department, job role, gender, age group, overtime, and income level.',
-    learned: 'Improved Power BI, DAX measures, HR analytics, dashboard layout design, and data storytelling skills.'
+    overview: 'A Power BI dashboard project focused on analyzing employee attrition and identifying high-risk employee groups.',
+    problem: 'Understand employee attrition and identify the main factors linked to employees leaving.',
+    dataset: 'IBM HR Analytics dataset with 1,470 employees.',
+    tools: ['Power BI', 'DAX', 'Excel'],
+    process: 'Cleaned the data, created DAX measures, built visuals, added slicers, and designed an interactive dark-themed dashboard.',
+    insights: 'Overall attrition rate was 16.12%. R&D had the highest attrition count. Overtime, job role, and age group were important attrition factors.',
+    output: 'Interactive Power BI dashboard showing attrition by department, job role, gender, age group, overtime, and other employee factors.',
+    learned: 'Improved my Power BI, DAX, HR analytics, dashboard layout, and data storytelling skills.'
   },
   {
-    tag: 'SQL · Database',
-    title: 'Job Application System Database',
-    problem: 'Design a structured, normalized relational database to manage job applications, interviews, and offer statuses efficiently.',
-    dataset: 'Custom-designed sample data — applicants, jobs, interviews, interviewers, documents, and job offers.',
-    tools: ['MySQL / MariaDB', 'SQL DDL & DML', 'ERD Design', 'Normalisation (3NF)'],
-    process: 'Designed the full ERD, normalized tables from 1NF to 3NF. Wrote DDL scripts to create all tables with primary/foreign keys. Implemented triggers, stored procedures, and custom SQL functions.',
-    insights: 'A normalized 3NF schema eliminates data duplication and improves integrity. Auto-triggers on offer status changes streamline applicant notifications.',
-    output: 'SQL-based job application database with 6 normalized tables, triggers, stored procedures (GetJobOffersForApplicant, GetJobsByLocation), and functions (CountJobOffersForJob, CalculateAverageSalary).',
-    learned: 'Improved SQL querying, database normalization, schema design, trigger logic, and understanding of relational database systems.'
+    tag: 'SQL / Database',
+    title: 'Student Management System',
+    overview: 'A database project focused on managing students, courses, enrollments, and related academic records using SQL.',
+    problem: 'Design a structured database system to manage student records, courses, and enrollments efficiently.',
+    dataset: 'Sample student, course, and enrollment records.',
+    tools: ['SQL', 'MySQL', 'Database Design'],
+    process: 'Designed database tables, defined primary and foreign keys, created relationships, wrote SQL queries, and tested database operations.',
+    insights: 'A normalized database structure improves data organization, reduces duplication, and makes student data easier to manage.',
+    output: 'SQL-based student management database with structured tables and queries.',
+    learned: 'Improved my SQL querying, database relationships, schema design, and understanding of relational database systems.'
+  },
+  {
+    tag: 'Python / Pipeline',
+    title: 'HR Analytics Pipeline',
+    overview: 'End-to-end HR analytics pipeline analyzing 1,470 employee records to identify attrition drivers using Python, SQL, and Power BI.',
+    problem: 'Identify the key drivers of employee attrition in a retail company and build a system to flag high-risk employees before they leave.',
+    dataset: 'IBM HR Employee Attrition dataset — 1,470 employees, 35 columns. Source: Kaggle.',
+    tools: ['Python', 'Pandas', 'SQL', 'SQLite', 'Power BI', 'DAX', 'openpyxl'],
+    process: 'Loaded and explored data → cleaned and encoded columns (OverTime, Gender, BusinessTravel) → engineered 3 new features (IncomePerYear, TenureRoleRatio, SeniorityScore) → built SQLite database with advanced SQL queries (CTEs, window functions, views) → identified 113 high-risk employees → auto-generated Excel report → built 2-page Power BI dashboard with 5 DAX measures and interactive slicers.',
+    insights: 'Sales Representatives earn the least ($2,626 avg) and leave at 39.76% — the highest attrition rate across all job roles.',
+    output: '2-page Power BI dashboard — Page 1 professional overview with navy theme, Page 2 dark neon risk analysis with insight cards.',
+    learned: 'End-to-end data pipeline design, advanced SQL, DAX measures in Power BI, feature engineering, automated Excel reporting with openpyxl, and dashboard design for business stakeholders.'
   }
 ];
 
@@ -61,6 +76,7 @@ function openCaseStudy(n) {
   const toolsHtml = `<div class="cs-tools">${cs.tools.map(t => `<span class="cs-tool-chip">${t}</span>`).join('')}</div>`;
 
   document.getElementById('csBody').innerHTML =
+    buildSection('📄', 'Overview', `<p>${cs.overview}</p>`, 'full-width') +
     buildSection('🎯', 'Problem', `<p>${cs.problem}</p>`) +
     buildSection('📊', 'Dataset', `<p>${cs.dataset}</p>`) +
     buildSection('🛠', 'Tools Used', toolsHtml) +
