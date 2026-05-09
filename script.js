@@ -55,7 +55,7 @@ const caseStudies = [
     process: 'Loaded and explored data → cleaned and encoded columns (OverTime, Gender, BusinessTravel) → engineered 3 new features (IncomePerYear, TenureRoleRatio, SeniorityScore) → built SQLite database with advanced SQL queries (CTEs, window functions, views) → identified 113 high-risk employees → auto-generated Excel report → built 2-page Power BI dashboard with 5 DAX measures and interactive slicers.',
     insights: 'Sales Representatives earn the least ($2,626 avg) and leave at 39.76% — the highest attrition rate across all job roles.',
     output: '2-page Power BI dashboard — Page 1 professional overview with navy theme, Page 2 dark neon risk analysis with insight cards.',
-    images: ['/assets/Overview_dashboard.png', '/assets/income_vs_attrition.png'],
+    images: ['Overview_dashboard.png', 'income_vs_attrition.png'],
     learned: 'End-to-end data pipeline design, advanced SQL, DAX measures in Power BI, feature engineering, automated Excel reporting with openpyxl, and dashboard design for business stakeholders.'
   }
 ];
