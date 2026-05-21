@@ -328,7 +328,9 @@ body.light-mode { background: var(--bg); }
   position: relative;
   z-index: 2;
   max-width: 800px;
+  width: 100%;
   text-align: center;
+  margin: 0 auto;
 }
 
 .hero-badge {
