@@ -1,63 +1,81 @@
-<nav id="navbar">
-  <div class="nav-inner">
-    <a class="nav-logo" href="#hero">Abdalla<span class="logo-dot">.</span></a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#certifications">Certs</a></li>
-      <li><a href="#education">Education</a></li>
-    </ul>
-    <a class="nav-cta" href="CV.pdf" download>Download CV</a>
-  </div>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdalla Nadir — Data Analyst & AI Student</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
 
-<section id="hero">
-  <div class="container hero-grid">
-    
-    <div class="hero-left">
-      <div class="hero-badge">Available for Internships · March 2027 Cohort</div>
-      
-      <h1 class="hero-title">
-        Hello, I'm <br>
-        <span class="gradient-text">Abdalla Nadir</span>
-      </h1>
-      
-      <h2 class="hero-subtitle">Data Analyst &amp; AI Student</h2>
-      
-      <p class="hero-desc">
-        Turning raw organizational data into decisions that matter. Specializing in pipeline architectures, predictive models, and highly functional business intelligence dashboards.
-      </p>
-      
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <button class="name-speak-btn" id="speakNameBtn" onclick="speakName()" aria-label="Play name pronunciation">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-          <span>Hear Pronunciation</span>
-        </button>
-      </div>
-
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-number">3.4</span>
-          <span class="stat-label">Current GPA</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">3+</span>
-          <span class="stat-label">Live Projects</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">5+</span>
-          <span class="stat-label">Core Certs</span>
-        </div>
-      </div>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">Abdalla<span class="logo-dot">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certs</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="nav-cta" href="CV.pdf" download>Download CV</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+        <span class="theme-icon">☀️</span>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-
-    <div class="hero-right">
-      <div class="image-card">
-        <img src="MY_PROFILE_PICjpeg.jpeg" alt="Abdalla Nadir" class="hero-img">
-      </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certs</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <a href="CV.pdf" download class="mobile-cta">Download CV</a>
     </div>
+  </nav>
 
-  </div>
-</section>
+  <section id="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="container hero-grid">
+      
+      <div class="hero-left">
+        <div class="hero-badge">Available for Internships · March 2027 Cohort</div>
+        <h1 class="hero-title">
+          Hello, I'm <br>
+          <span class="gradient-text">Abdalla Nadir</span>
+        </h1>
+        <h2 class="hero-subtitle">Data Analyst &amp; AI Student</h2>
+        <p class="hero-desc">
+          Turning raw organizational data into decisions that matter. Specializing in pipeline architectures, predictive models, and highly functional business intelligence dashboards.
+        </p>
+        
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <button class="name-speak-btn" id="speakNameBtn" onclick="speakName()" aria-label="Play name pronunciation" title="Hear my name">
+            <span class="speak-btn-inner">
+              <svg class="speak-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path class="speak-wave speak-wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                <path class="speak-wave speak-wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+              </svg>
+              <span class="speak-label">Hear Pronunciation</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">3.4</span>
+            <span class="stat-label">Current GPA</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3+</span>
+            <span class="stat-label">Live Projects</span>
+          </div>
