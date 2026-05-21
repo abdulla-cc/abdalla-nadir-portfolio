@@ -45,49 +45,75 @@
   <!-- ===== HERO ===== -->
   <section id="hero">
     <canvas id="particleCanvas"></canvas>
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        Looking for an Internship
+
+    <div class="hero-inner container">
+      <!-- LEFT: Text -->
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Available for Internship
+        </div>
+
+        <h1 class="hero-title">
+          Hello, I'm<br>
+          <span class="hero-name">Abdalla Nadir</span>
+        </h1>
+
+        <p class="hero-role-line">
+          <span class="hero-role-tag">Data Analyst</span> &amp;
+          <span class="hero-role-tag gold">AI Student</span>
+        </p>
+
+        <p class="hero-desc">
+          Final-year Computer Science (AI) student at Multimedia University, turning raw data into decisions that matter.
+          Specialising in Power BI, Python, SQL, and Machine Learning.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="CV.pdf" download class="btn btn-ghost">Download CV</a>
+        </div>
+
+        <div class="hero-socials">
+          <a href="https://www.linkedin.com/in/abdalla-nadir-a6841532b/" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/abdulla-cc" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <button class="name-speak-btn" id="speakNameBtn" onclick="speakName()" aria-label="Hear name pronunciation">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <path class="speak-wave speak-wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              <path class="speak-wave speak-wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+            Hear my name
+          </button>
+        </div>
       </div>
-      <h1 class="hero-title">
-        <span class="hero-name">Abdalla Nadir</span>
-        <span class="hero-role">Data Analyst<br><em>&amp; AI Student</em></span>
-      </h1>
-      <button class="name-speak-btn" id="speakNameBtn" onclick="speakName()" aria-label="Play name pronunciation" title="Hear my name">
-        <span class="speak-btn-inner">
-          <svg class="speak-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-            <path class="speak-wave speak-wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-            <path class="speak-wave speak-wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-          </svg>
-          <span class="speak-label">Hear my name</span>
-        </span>
-      </button>
-      <p class="hero-desc">
-        Final-year AI student at Multimedia University, turning raw data into decisions that matter.
-        Power BI · Excel · Python · DAX · Machine Learning.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-      </div>
-      <div class="hero-socials">
-        <a href="https://www.linkedin.com/in/abdalla-nadir-a6841532b/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/abdulla-cc" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
+
+      <!-- RIGHT: Photo -->
+      <div class="hero-right">
+        <div class="hero-photo-wrap">
+          <img src="MY_PROFILE_PICjpeg.jpeg" alt="Abdalla Nadir" class="hero-photo" />
+          <div class="hero-photo-glow"></div>
+        </div>
+        <div class="hero-stats-row">
+          <div class="hero-stat"><span class="hero-stat-num">3.4</span><span class="hero-stat-label">GPA</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">4</span><span class="hero-stat-label">Projects</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">5+</span><span class="hero-stat-label">Certs</span></div>
+        </div>
       </div>
     </div>
+
     <div class="hero-scroll-hint">
       <span>Scroll</span>
       <div class="scroll-line"></div>
     </div>
   </section>
+
 
   <!-- ===== ABOUT ===== -->
   <section id="about">
@@ -96,13 +122,29 @@
       <div class="about-grid">
         <div class="about-text">
           <h2 class="section-title">Bridging <em>AI theory</em><br>and <em>real-world data</em></h2>
-          <p>I'm Abdalla — a final-year Computer Science (AI) student at Multimedia University, Melaka. My focus sits at the intersection of data analytics and business intelligence: I build dashboards and data pipelines that give organisations a clear, honest picture of what's happening inside their numbers.</p>
-          <p>With a 3.4 GPA, two end-to-end portfolio projects, and certifications from Microsoft, Google, and Cisco, I'm ready to bring real value to a data team from day one. I'm currently seeking a Data Analyst or BI internship.</p>
+          <p>
+            I'm Abdalla — a final-year Computer Science (AI) student at Multimedia University, Melaka. My focus sits at the intersection of data analytics and business intelligence: I build dashboards and data pipelines that give organisations a clear, honest picture of what's happening inside their numbers.
+          </p>
+          <p>
+            With a 3.4 GPA, two end-to-end portfolio projects, and certifications from Microsoft, Google, and Cisco, I'm ready to bring real value to a data team from day one. I'm currently seeking a Data Analyst or BI internship.
+          </p>
           <div class="about-stats">
-            <div class="stat"><span class="stat-num">3.4</span><span class="stat-label">GPA</span></div>
-            <div class="stat"><span class="stat-num">3</span><span class="stat-label">Portfolio Projects</span></div>
-            <div class="stat"><span class="stat-num">5</span><span class="stat-label">Certifications</span></div>
-            <div class="stat"><span class="stat-num">10K+</span><span class="stat-label">Rows Analysed</span></div>
+            <div class="stat">
+              <span class="stat-num">3.4</span>
+              <span class="stat-label">GPA</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">3</span>
+              <span class="stat-label">Portfolio Projects</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">5</span>
+              <span class="stat-label">Certifications</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">10K+</span>
+              <span class="stat-label">Rows Analysed</span>
+            </div>
           </div>
         </div>
         <div class="about-card-wrap">
@@ -131,9 +173,14 @@
     <div class="container">
       <div class="section-label">02 — Skills</div>
       <h2 class="section-title">Tools &amp; <em>Technologies</em></h2>
+
       <div class="skills-categories">
+
         <div class="skills-cat glass">
-          <div class="skills-cat-header"><span class="skills-cat-icon">📊</span><span>Data &amp; BI</span></div>
+          <div class="skills-cat-header">
+            <span class="skills-cat-icon">📊</span>
+            <span>Data & BI</span>
+          </div>
           <div class="skill-tags">
             <span class="skill-tag featured">Power BI</span>
             <span class="skill-tag featured">Microsoft Excel</span>
@@ -144,8 +191,12 @@
             <span class="skill-tag">Google Analytics</span>
           </div>
         </div>
+
         <div class="skills-cat glass">
-          <div class="skills-cat-header"><span class="skills-cat-icon">💻</span><span>Programming</span></div>
+          <div class="skills-cat-header">
+            <span class="skills-cat-icon">💻</span>
+            <span>Programming</span>
+          </div>
           <div class="skill-tags">
             <span class="skill-tag featured">Python</span>
             <span class="skill-tag featured">SQL</span>
@@ -154,8 +205,12 @@
             <span class="skill-tag">ETL Pipelines</span>
           </div>
         </div>
+
         <div class="skills-cat glass">
-          <div class="skills-cat-header"><span class="skills-cat-icon">🤖</span><span>AI &amp; ML</span></div>
+          <div class="skills-cat-header">
+            <span class="skills-cat-icon">🤖</span>
+            <span>AI & ML</span>
+          </div>
           <div class="skill-tags">
             <span class="skill-tag featured">Machine Learning</span>
             <span class="skill-tag featured">Deep Learning</span>
@@ -164,8 +219,12 @@
             <span class="skill-tag">Huawei AI V4.0</span>
           </div>
         </div>
+
         <div class="skills-cat glass">
-          <div class="skills-cat-header"><span class="skills-cat-icon">🌐</span><span>Networking &amp; Other</span></div>
+          <div class="skills-cat-header">
+            <span class="skills-cat-icon">🌐</span>
+            <span>Networking & Other</span>
+          </div>
           <div class="skill-tags">
             <span class="skill-tag featured">Cisco CCNA</span>
             <span class="skill-tag">Computer Networks</span>
@@ -174,6 +233,7 @@
             <span class="skill-tag">English (Professional)</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -183,6 +243,7 @@
     <div class="container">
       <div class="section-label">03 — Projects</div>
       <h2 class="section-title">Featured <em>Work</em></h2>
+
       <div class="projects-grid">
 
         <!-- Project 1 -->
@@ -193,15 +254,18 @@
           <div class="modern-card-body">
             <h3 class="project-title">Retail Sales Data Analysis</h3>
             <p class="project-desc">An Excel-based retail sales analysis project focused on understanding sales, profit, quantity, and category performance using an interactive dashboard.</p>
+            
             <div class="project-tools modern-tools">
               <span class="tool-badge">Excel</span>
               <span class="tool-badge">Pivot Tables</span>
               <span class="tool-badge">Slicers</span>
             </div>
+
             <div class="project-insight-box">
               <span class="insight-icon">💡</span>
               <span class="insight-text">Identified sales and profit patterns across regions, categories, and sub-categories.</span>
             </div>
+
             <div class="project-actions modern-actions">
               <a href="#" class="proj-btn proj-btn-primary">View Dashboard</a>
               <a href="https://github.com/abdulla-cc/sales-data-analysis" class="proj-btn proj-btn-secondary" target="_blank">GitHub</a>
@@ -218,15 +282,18 @@
           <div class="modern-card-body">
             <h3 class="project-title">HR Analytics Dashboard</h3>
             <p class="project-desc">A Power BI dashboard project focused on analyzing employee attrition and identifying high-risk employee groups.</p>
+            
             <div class="project-tools modern-tools">
               <span class="tool-badge">Power BI</span>
               <span class="tool-badge">DAX</span>
               <span class="tool-badge">Excel</span>
             </div>
+
             <div class="project-insight-box">
               <span class="insight-icon">💡</span>
               <span class="insight-text">Overall attrition rate was 16.12%. R&D had the highest attrition count.</span>
             </div>
+
             <div class="project-actions modern-actions">
               <a href="#" class="proj-btn proj-btn-primary">View Dashboard</a>
               <a href="https://github.com/abdulla-cc/hr-analytics-analysis" class="proj-btn proj-btn-secondary" target="_blank">GitHub</a>
@@ -237,18 +304,22 @@
 
         <!-- Project 3 -->
         <div class="project-card modern-card">
+
           <div class="modern-card-body">
             <h3 class="project-title">Student Management System</h3>
             <p class="project-desc">A database project focused on managing students, courses, enrollments, and related academic records using SQL.</p>
+            
             <div class="project-tools modern-tools">
               <span class="tool-badge">SQL</span>
               <span class="tool-badge">MySQL</span>
               <span class="tool-badge">Database Design</span>
             </div>
+
             <div class="project-insight-box">
               <span class="insight-icon">💡</span>
               <span class="insight-text">A normalized database structure improves data organization and makes data easier to manage.</span>
             </div>
+
             <div class="project-actions modern-actions">
               <a href="#" class="proj-btn proj-btn-primary">View Project</a>
               <a href="#" class="proj-btn proj-btn-secondary">GitHub</a>
@@ -265,15 +336,18 @@
           <div class="modern-card-body">
             <h3 class="project-title">HR Analytics Pipeline</h3>
             <p class="project-desc">End-to-end HR analytics pipeline analyzing 1,470 employee records to identify attrition drivers using Python, SQL, and Power BI.</p>
+            
             <div class="project-tools modern-tools">
               <span class="tool-badge">Python</span>
               <span class="tool-badge">SQL</span>
               <span class="tool-badge">Power BI</span>
             </div>
+
             <div class="project-insight-box">
               <span class="insight-icon">💡</span>
               <span class="insight-text">Sales Representatives earn the least ($2,626 avg) and leave at 39.76% — the highest attrition rate.</span>
             </div>
+
             <div class="project-actions modern-actions">
               <a href="https://github.com/abdulla-cc/HR-Analytics-Pipeline" class="proj-btn proj-btn-secondary" target="_blank">GitHub</a>
               <button onclick="openCaseStudy(4)" class="proj-btn proj-btn-outline">Case Study</button>
@@ -291,48 +365,73 @@
       <div class="section-label">04 — Certifications</div>
       <h2 class="section-title">Verified <em>Credentials</em></h2>
       <div class="certs-grid">
+
         <div class="cert-card glass">
           <div class="cert-logo microsoft">MS</div>
           <div class="cert-info">
             <h4>Microsoft Power BI for Beginners</h4>
-            <div class="cert-meta"><span>Microsoft</span><span class="cert-date">Dec 2025</span></div>
+            <div class="cert-meta">
+              <span>Microsoft</span>
+              <span class="cert-date">Dec 2025</span>
+            </div>
           </div>
         </div>
+
         <div class="cert-card glass">
           <div class="cert-logo google">G</div>
           <div class="cert-info">
             <h4>Google Analytics Certification</h4>
-            <div class="cert-meta"><span>Google</span><span class="cert-date">Nov 2025</span></div>
+            <div class="cert-meta">
+              <span>Google</span>
+              <span class="cert-date">Nov 2025</span>
+            </div>
           </div>
         </div>
+
         <div class="cert-card glass">
           <div class="cert-logo cisco">CS</div>
           <div class="cert-info">
             <h4>CCNA: Introduction to Networks</h4>
-            <div class="cert-meta"><span>Cisco</span><span class="cert-date">Feb 2026</span></div>
+            <div class="cert-meta">
+              <span>Cisco</span>
+              <span class="cert-date">Feb 2026</span>
+            </div>
           </div>
         </div>
+
         <div class="cert-card glass">
           <div class="cert-logo huawei">HW</div>
           <div class="cert-info">
             <h4>HCIA-AI V4.0</h4>
-            <div class="cert-meta"><span>Huawei</span><span class="cert-date">Feb 2026</span></div>
+            <div class="cert-meta">
+              <span>Huawei</span>
+              <span class="cert-date">Feb 2026</span>
+            </div>
           </div>
         </div>
+
         <div class="cert-card glass">
           <div class="cert-logo prompt">PE</div>
           <div class="cert-info">
             <h4>Prompt Engineering Masterclass</h4>
-            <div class="cert-meta"><span>Great Learning</span><span class="cert-date">Mar 2026</span></div>
+            <div class="cert-meta">
+              <span>Great Learning</span>
+              <span class="cert-date">Mar 2026</span>
+            </div>
           </div>
         </div>
+
         <div class="cert-card glass">
           <div class="cert-logo ibm">IBM</div>
           <div class="cert-info">
             <h4>IBM Data Analyst Professional Certificate</h4>
-            <div class="cert-meta"><span>IBM</span><span class="cert-badge">In Progress</span></div>
+            <div class="cert-meta">
+              <span>IBM</span>
+              <span class="cert-badge">In Progress</span>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -410,7 +509,9 @@
             <span class="contact-val">github.com/abdulla-cc</span>
           </a>
         </div>
-        <a href="CV.pdf" download class="btn btn-primary btn-large">⬇ Download My CV</a>
+        <a href="CV.pdf" download class="btn btn-primary btn-large">
+          ⬇ Download My CV
+        </a>
       </div>
     </div>
   </section>
@@ -418,7 +519,7 @@
   <!-- ===== FOOTER ===== -->
   <footer>
     <div class="container">
-      <p>Designed &amp; built by Abdalla Nadir · <span id="year"></span></p>
+      <p>Designed & built by Abdalla Nadir · <span id="year"></span></p>
     </div>
   </footer>
 
