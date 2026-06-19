@@ -579,18 +579,22 @@ h1, h2, h3, h4 {
 .proj-img-wrap {
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--surface-2);
+  background:
+    radial-gradient(circle at 50% 45%, rgba(242, 202, 80, 0.18) 0%, transparent 60%),
+    var(--surface-2);
   border-bottom: 1px solid var(--border-soft);
   display: flex; align-items: center; justify-content: center;
   position: relative;
+  transition: background 0.3s ease;
 }
-.proj-img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.proj-card:hover .proj-img { transform: scale(1.05); }
 .proj-img-placeholder {
-  font-size: 42px; color: var(--gold);
+  font-size: 72px;
+  color: var(--gold);
+  filter: drop-shadow(0 8px 24px rgba(242, 202, 80, 0.28));
+  transition: transform 0.4s ease;
+}
+.proj-card:hover .proj-img-placeholder {
+  transform: scale(1.08) translateY(-2px);
 }
 
 .proj-body {
