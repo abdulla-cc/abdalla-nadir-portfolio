@@ -140,8 +140,41 @@ if ('speechSynthesis' in window) {
   speechSynthesis.onvoiceschanged = cacheVoices;
 }
 
+/* ===== THEME TOGGLE ===== */
+function initTheme() {
+  const html = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+
+  // Get saved theme or default to light
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  html.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+  }
+}
+
+function updateThemeIcon(theme) {
+  const themeIcon = document.getElementById('themeIcon');
+  if (themeIcon) {
+    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+}
+
 /* ===== DOM READY ===== */
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* ----- Initialize theme ----- */
+  initTheme();
 
   /* ----- Footer year ----- */
   const yearEl = document.getElementById('year');
