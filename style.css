@@ -440,6 +440,7 @@ h1, h2, h3, h4 {
   transform: translateY(-3px);
 }
 .about-socials .msym { font-size: 18px; }
+.about-socials svg { width: 18px; height: 18px; display: block; }
 
 .about-text h2 {
   font-size: 40px; line-height: 1.12;
