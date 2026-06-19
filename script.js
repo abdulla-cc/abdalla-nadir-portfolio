@@ -58,6 +58,18 @@ const caseStudies = [
     insights: 'Sales Representatives earn the least ($2,626 avg) and leave at 39.76% — the highest attrition rate across all job roles.',
     output: '2-page Power BI dashboard — overview with navy theme and a dark neon risk analysis page with insight cards and high-risk employee flags.',
     learned: 'End-to-end data pipeline design, advanced SQL, DAX in Power BI, feature engineering, automated Excel reporting with openpyxl, and presenting findings to business stakeholders.'
+  },
+  {
+    tag: 'AI / Final Year Project',
+    title: 'AI-Powered Supply Chain Optimization & Risk Management (SCOMS)',
+    overview: 'Final Year Project at Multimedia University (B.CS in AI). A three-module AI pipeline integrating LSTM demand forecasting, Random Forest supplier risk classification, and EOQ/ROP inventory optimization for retail supply chain decision support — surfaced through a Streamlit dashboard with a role-based recommendation flow for store managers.',
+    problem: 'Retail supply-chain managers juggle forecasting, supplier risk, and inventory in disconnected tools. SCOMS unifies all three into a single AI-driven decision support system so a store manager sees demand, risk, and reorder thresholds in one place.',
+    dataset: 'Retail supply-chain dataset covering historical demand, supplier performance, lead times, defect rates, and disruption history — supporting both time-series forecasting and supplier-level risk scoring.',
+    tools: ['Python', 'TensorFlow / Keras', 'Scikit-learn', 'XGBoost', 'Streamlit', 'NumPy', 'Pandas'],
+    process: 'Architected an LSTM forecasting model (2 stacked layers, 64 / 32 units, 30-day sliding window) for 7–30 day demand prediction; configured an XGBoost benchmark across RMSE, MAE, and MAPE. Built a Random Forest classifier (100 estimators) scoring suppliers as Low / Medium / High risk across five operational features — delivery delay rate, fulfillment rate, lead-time variance, defect rate, and disruption history. Implemented an inventory module computing EOQ, Reorder Point, and Safety Stock dynamically from the forecast output. Finalized system architecture and validated the dataset strategy through a 5-chapter FYP research phase, benchmarking against 11 peer-reviewed supply-chain optimization papers (2020–2026) to justify the hybrid LSTM + XGBoost approach over RNN and ARIMA baselines.',
+    insights: 'Hybrid LSTM + XGBoost forecasting outperforms standalone RNN and ARIMA baselines across the surveyed literature. Combining supplier risk classification with dynamic inventory thresholds turns raw forecasts into actionable reorder decisions — not just numbers.',
+    output: 'Streamlit dashboard with a role-based recommendation flow: demand forecasts, supplier risk tiers, and live EOQ / ROP / safety-stock thresholds on one screen — designed for non-technical store managers.',
+    learned: 'End-to-end ML system design (research → architecture → implementation), hybrid model selection backed by empirical benchmarking, applied deep learning for time-series forecasting, and translating an academic FYP into a tool a non-technical user can actually use.'
   }
 ];
 
