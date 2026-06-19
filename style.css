@@ -650,6 +650,12 @@ h1, h2, h3, h4 {
   gap: 24px;
 }
 
+/* Make the last regular project card span full width when it would
+   otherwise be alone in its row (i.e. total children is even). */
+.projects-grid > .proj-card:last-child:nth-child(even) {
+  grid-column: 1 / -1;
+}
+
 /* Featured project card — spans full width with horizontal layout */
 .proj-card.featured {
   grid-column: 1 / -1;

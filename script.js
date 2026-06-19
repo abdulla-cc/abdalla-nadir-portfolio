@@ -70,6 +70,18 @@ const caseStudies = [
     insights: 'Hybrid LSTM + XGBoost forecasting outperforms standalone RNN and ARIMA baselines across the surveyed literature. Combining supplier risk classification with dynamic inventory thresholds turns raw forecasts into actionable reorder decisions — not just numbers.',
     output: 'Streamlit dashboard with a role-based recommendation flow: demand forecasts, supplier risk tiers, and live EOQ / ROP / safety-stock thresholds on one screen — designed for non-technical store managers.',
     learned: 'End-to-end ML system design (research → architecture → implementation), hybrid model selection backed by empirical benchmarking, applied deep learning for time-series forecasting, and translating an academic FYP into a tool a non-technical user can actually use.'
+  },
+  {
+    tag: 'Machine Learning',
+    title: 'XGBoost Diabetes Risk Models — Clinical & Behavioral',
+    overview: 'Two parallel XGBoost binary classification pipelines predicting diabetes onset — one on a 2,000-patient clinical dataset and another on a 13-feature behavioral / socioeconomic dataset. Built end-to-end in Python with rigorous handling of class imbalance, feature engineering, and 5-fold hyperparameter search.',
+    problem: 'Predict diabetes onset in a clinically actionable way: the model has to catch the minority (positive) class rather than default to majority-class prediction, which is the failure mode of naive accuracy-optimised classifiers on imbalanced medical data.',
+    dataset: 'Two parallel datasets — (1) 2,000-patient clinical with Glucose, BMI, BloodPressure, Insulin, and Age; (2) a 50 / 50 balanced 13-feature behavioral & socioeconomic dataset.',
+    tools: ['Python', 'XGBoost', 'SMOTE', 'GridSearchCV', 'Scikit-learn', 'Pandas', 'NumPy'],
+    process: 'Engineered 2 clinical interaction features (BMI × Age, Glucose / Insulin ratio) and applied median imputation across 5 columns (956 Insulin nulls, 573 SkinThickness nulls) before training. Resolved class imbalance via SMOTE oversampling applied exclusively to the training split — keeping the test distribution realistic. Executed 5-fold GridSearchCV across 432 hyperparameter combinations; optimal config was max_depth=7, n_estimators=300, lr=0.05. The behavioral pipeline used stratified train / test splits and StandardScaler normalization; both pipelines validated via confusion matrices on all splits.',
+    insights: 'Applying SMOTE only on the training split lifted minority-class F1 to 0.76 — the clinical model stays viable for detecting at-risk patients rather than defaulting to majority-class. Clinical pipeline hit 82% test accuracy on the minority class; behavioral pipeline reached 79.4% accuracy with balanced precision / recall (0.79 / 0.80).',
+    output: 'Two production-style XGBoost classifiers published as shareable Google Colab notebooks — one for clinical-feature input, one for behavioral / socioeconomic input, both with reproducible training pipelines and confusion-matrix validation.',
+    learned: 'Disciplined class-imbalance handling (SMOTE on training only, never test), large-scale hyperparameter optimisation, interaction-feature engineering for clinical interpretability, and treating confusion matrices — not raw accuracy — as the real metric for medical ML.'
   }
 ];
 
