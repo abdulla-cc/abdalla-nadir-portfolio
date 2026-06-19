@@ -124,9 +124,23 @@ function initTheme() {
   });
 }
 
+/* ===== LOADING SPLASH ===== */
+function initSplash() {
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+  // Hide after the document has rendered + a short minimum hold so the logo is actually seen.
+  const hide = () => {
+    setTimeout(() => splash.classList.add('hidden'), 600);
+    setTimeout(() => splash.remove(), 1100);
+  };
+  if (document.readyState === 'complete') hide();
+  else window.addEventListener('load', hide);
+}
+
 /* ===== DOM READY ===== */
 document.addEventListener('DOMContentLoaded', () => {
 
+  initSplash();
   initTheme();
 
   /* Footer year */
