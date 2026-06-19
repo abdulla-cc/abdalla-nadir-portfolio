@@ -4,186 +4,221 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Abdalla Nadir — Data Analyst & AI Student</title>
-  <meta name="description" content="Portfolio of Abdalla Nadir, Data Analyst & AI Student at Multimedia University. Specialising in Power BI, Python, SQL and Machine Learning."/>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Portfolio of Abdalla Nadir, Data Analyst & AI Student at Multimedia University. Power BI, Python, SQL, and machine learning."/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .msym {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal; font-style: normal;
+      display: inline-block; line-height: 1;
+      text-transform: none; letter-spacing: normal;
+      white-space: nowrap; word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <script>
+    // Set theme as early as possible to avoid a flash
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 </head>
 <body>
 
   <!-- ===== NAVIGATION ===== -->
   <nav id="navbar">
-    <div class="nav-inner container">
-      <a href="#hero" class="nav-logo">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
         <span class="nav-logo-icon">AN</span>
-        Abdalla Nadir
+        <span class="nav-logo-name">Abdalla Nadir</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#hero"           class="nav-link" data-section="hero">Home</a></li>
-        <li><a href="#about"          class="nav-link" data-section="about">About</a></li>
-        <li><a href="#skills"         class="nav-link" data-section="skills">Skills</a></li>
-        <li><a href="#projects"       class="nav-link" data-section="projects">Projects</a></li>
-        <li><a href="#certifications" class="nav-link" data-section="certifications">Certs</a></li>
+        <li><a href="#home"     class="nav-link" data-section="home">Home</a></li>
+        <li><a href="#about"    class="nav-link" data-section="about">About</a></li>
+        <li><a href="#skills"   class="nav-link" data-section="skills">Skills</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+        <li><a href="#certs"    class="nav-link" data-section="certs">Certs</a></li>
       </ul>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle Dark/Light Mode">
-        <span id="themeIcon">🌙</span>
-      </button>
-      <a href="#contact" class="btn-contact">Contact</a>
-      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark / light">
+          <span class="msym" id="themeIcon">light_mode</span>
+        </button>
+        <a href="#contact" class="btn btn-primary">Contact</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#hero">Home</a>
+      <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#certifications">Certs</a>
-      <a href="#contact" class="btn-contact mobile-cta">Contact</a>
+      <a href="#certs">Certs</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 
   <!-- ===== HERO ===== -->
-  <section id="hero">
-    <div class="hero-blob"></div>
-    <div class="hero-blob hero-blob-2"></div>
+  <section id="home">
+    <div class="hero-blob hero-blob-a"></div>
+    <div class="hero-blob hero-blob-b"></div>
     <div class="container hero-grid">
-
-      <!-- LEFT -->
       <div class="hero-text reveal">
-        <span class="hero-tag">● Available for Internship</span>
-        <h1>Hello, I'm<br><span class="hero-name">Abdalla Nadir</span></h1>
-        <p class="hero-sub">
-          I'm a <span class="accent-text">Data Analyst</span> and <span class="underline-accent">AI Student</span>
-          based in Melaka, Malaysia. I turn raw data into clear, actionable insights using
-          Power BI, Python, and SQL.
+        <span class="availability-pill">
+          <span class="availability-dot"></span>
+          Available for internship
+        </span>
+        <h1>Turning data into <span class="accent">insights</span> &amp; smarter <span class="accent">decisions</span>.</h1>
+        <p class="hero-lead">
+          I'm a Data Analyst &amp; AI student at Multimedia University, Melaka, building dashboards and pipelines that turn raw data into clear, actionable stories — with Power BI, Python, and SQL.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn-primary">Say Hello!</a>
-          <a href="CV.pdf" download class="btn-outline">⬇ Download CV</a>
+          <a href="#projects" class="btn btn-primary">
+            View Projects
+            <span class="msym">arrow_forward</span>
+          </a>
+          <a href="#contact" class="btn btn-outline">Get in touch</a>
         </div>
         <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="stat-n">3.4</span>
-            <span class="stat-l">GPA</span>
+          <div class="stat-card">
+            <div class="stat-n">3.4</div>
+            <div class="stat-l">GPA / 4.0</div>
           </div>
-          <div class="hero-stat-div"></div>
-          <div class="hero-stat">
-            <span class="stat-n">4</span>
-            <span class="stat-l">Projects</span>
+          <div class="stat-card">
+            <div class="stat-n">4</div>
+            <div class="stat-l">Projects</div>
           </div>
-          <div class="hero-stat-div"></div>
-          <div class="hero-stat">
-            <span class="stat-n">5+</span>
-            <span class="stat-l">Certifications</span>
+          <div class="stat-card">
+            <div class="stat-n">6</div>
+            <div class="stat-l">Certifications</div>
           </div>
         </div>
       </div>
-
-      <!-- RIGHT: Photo -->
       <div class="hero-photo-col reveal reveal-delay-1">
-        <div class="hero-photo-card">
+        <div class="hero-photo-frame">
           <img src="MY_PROFILE_PICjpeg.jpeg" alt="Abdalla Nadir" class="hero-photo"
-            onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback')"/>
+               onerror="this.style.background='var(--surface-2)';this.removeAttribute('src');"/>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== ABOUT ===== -->
-  <section id="about">
+  <section id="about" class="section">
     <div class="container about-grid">
-
-      <!-- LEFT: Photo card -->
-      <div class="about-photo-col reveal">
-        <div class="about-photo-card">
-          <img src="MY_PROFILE_PICjpeg.jpeg" alt="Abdalla Nadir" class="about-photo"
-            onerror="this.style.display='none'; this.parentElement.classList.add('photo-fallback')"/>
-          <div class="about-socials">
-            <a href="https://www.linkedin.com/in/abdalla-nadir-a6841532b/" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            </a>
-            <a href="https://github.com/abdulla-cc" target="_blank" rel="noopener" aria-label="GitHub">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            </a>
-            <a href="mailto:abdullah130306@gmail.com" aria-label="Email">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </a>
-          </div>
+      <div class="about-photo-wrap reveal">
+        <img src="MY_PROFILE_PICjpeg.jpeg" alt="Abdalla Nadir" class="about-photo"
+             onerror="this.style.background='var(--surface-2)';this.removeAttribute('src');"/>
+        <div class="about-socials">
+          <a href="mailto:abdullah130306@gmail.com" aria-label="Email"><span class="msym">mail</span></a>
+          <a href="https://www.linkedin.com/in/abdalla-nadir-a6841532b/" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="msym">hub</span></a>
+          <a href="https://github.com/abdulla-cc" target="_blank" rel="noopener" aria-label="GitHub"><span class="msym">code</span></a>
         </div>
       </div>
-
-      <!-- RIGHT: Text -->
       <div class="about-text reveal reveal-delay-1">
-        <span class="section-tag">About Me</span>
-        <h2>I am a Professional <span class="accent-text">Data Analyst</span></h2>
+        <span class="eyebrow">About Me</span>
+        <h2>Analytical mind, builder's hands.</h2>
         <p>Final-year Computer Science (AI) student at Multimedia University, Melaka. My focus sits at the intersection of data analytics and business intelligence — I build dashboards and data pipelines that give organisations a clear picture of what's inside their numbers.</p>
-        <p>With a 3.4 GPA, Dean's List recognition, and certifications from Microsoft, Google, Cisco, and Huawei, I'm ready to bring real value to a data team from day one. I'm currently seeking a Data Analyst or BI internship.</p>
-        <div class="about-actions">
-          <a href="#projects" class="btn-primary">My Projects</a>
-          <a href="CV.pdf" download class="btn-outline">⬇ Download CV</a>
+        <p>With a 3.4 GPA, Dean's List recognition, and certifications from Microsoft, Google, Cisco, and Huawei, I'm ready to bring real value to a data team from day one. Currently seeking a Data Analyst or BI internship.</p>
+        <div class="achievements-grid">
+          <div class="achievement-card">
+            <div class="achievement-icon"><span class="msym">emoji_events</span></div>
+            <h4>Dean's List</h4>
+            <p>Recognised for academic performance at Multimedia University.</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon"><span class="msym">insights</span></div>
+            <h4>4 Shipped Projects</h4>
+            <p>End-to-end analytics work across Excel, Power BI, SQL, and Python.</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon"><span class="msym">school</span></div>
+            <h4>AI Specialisation</h4>
+            <p>Coursework in machine learning, deep learning, and applied AI.</p>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon"><span class="msym">groups</span></div>
+            <h4>Arabic Culture Society</h4>
+            <p>High Committee — leading events and cross-campus collaboration.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== SKILLS ===== -->
-  <section id="skills" class="section-gray">
+  <section id="skills" class="section section-surface">
     <div class="container skills-grid">
-
-      <!-- LEFT: Text -->
       <div class="skills-text reveal">
-        <span class="section-tag">My Skills</span>
-        <h2>Tools &amp; <span class="accent-text">Technologies</span></h2>
-        <p>I combine analytical thinking with technical proficiency to deliver data-driven solutions across the full analytics stack.</p>
-        <p>From cleaning raw data to publishing interactive dashboards — I handle each step with precision and attention to detail.</p>
-        <div class="skill-tags-row">
-          <span class="stag">Power BI</span>
-          <span class="stag">Python</span>
-          <span class="stag">SQL</span>
-          <span class="stag">Excel</span>
-          <span class="stag">DAX</span>
-          <span class="stag">Machine Learning</span>
-          <span class="stag">Pandas</span>
-          <span class="stag">SQLite</span>
-          <span class="stag">ETL Pipelines</span>
-          <span class="stag">Google Analytics</span>
+        <span class="eyebrow">Skills &amp; Tools</span>
+        <h2>The stack I work in every day.</h2>
+        <p>From cleaning raw data to publishing interactive dashboards — I handle each step with precision: BI tools, scripting, query languages, and the connective tissue between them.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">DAX</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag">Machine Learning</span>
+          <span class="skill-tag">ETL Pipelines</span>
+          <span class="skill-tag">openpyxl</span>
+          <span class="skill-tag">Google Analytics</span>
+          <span class="skill-tag">Git</span>
         </div>
       </div>
-
-      <!-- RIGHT: Cards -->
       <div class="skills-cards reveal reveal-delay-1">
         <div class="skill-card">
-          <div class="skill-card-icon">📊</div>
-          <h4>1. Data &amp; BI</h4>
-          <p>Power BI dashboards, DAX measures, KPI tracking, and interactive Excel reports for business decision-making.</p>
+          <div class="skill-card-icon"><span class="msym">query_stats</span></div>
+          <h4>Data &amp; BI</h4>
+          <p>Power BI dashboards, DAX measures, KPI tracking, and interactive Excel reports.</p>
         </div>
         <div class="skill-card">
-          <div class="skill-card-icon">🐍</div>
-          <h4>2. Python &amp; SQL</h4>
-          <p>End-to-end pipelines using Pandas, SQLite, openpyxl with advanced CTEs, window functions, and views.</p>
+          <div class="skill-card-icon"><span class="msym">model_training</span></div>
+          <h4>Python &amp; SQL</h4>
+          <p>End-to-end pipelines using Pandas, SQLite, openpyxl — with CTEs, window functions, and views.</p>
         </div>
         <div class="skill-card">
-          <div class="skill-card-icon">🤖</div>
-          <h4>3. AI &amp; ML</h4>
-          <p>Machine learning fundamentals, deep learning, feature engineering, and prompt engineering for intelligent systems.</p>
+          <div class="skill-card-icon"><span class="msym">science</span></div>
+          <h4>AI &amp; ML</h4>
+          <p>Machine learning fundamentals, deep learning, feature engineering, and prompt engineering.</p>
         </div>
         <div class="skill-card">
-          <div class="skill-card-icon">🌐</div>
-          <h4>4. Deploy &amp; Report</h4>
-          <p>Cisco CCNA certified, Google Analytics, GitHub workflows, and automated Excel report generation with openpyxl.</p>
+          <div class="skill-card-icon"><span class="msym">bar_chart</span></div>
+          <h4>Deploy &amp; Report</h4>
+          <p>Cisco CCNA, Google Analytics, GitHub workflows, and automated reports with openpyxl.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== PROJECTS ===== -->
-  <section id="projects">
+  <section id="projects" class="section">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Projects</h2>
-        <p>A selection of my recent work, showcasing analytical thinking and technical skills across the data analytics stack.</p>
+        <div>
+          <span class="eyebrow">Selected Work</span>
+          <h2>Projects</h2>
+        </div>
+        <a href="https://github.com/abdulla-cc" target="_blank" rel="noopener" class="section-link">
+          See more on GitHub
+          <span class="msym">north_east</span>
+        </a>
       </div>
       <div class="projects-grid">
 
@@ -191,15 +226,19 @@
         <div class="proj-card reveal">
           <div class="proj-img-wrap">
             <img src="retail-dashboard.png" alt="Retail Sales Analysis" class="proj-img"
-              onerror="this.parentElement.classList.add('proj-img-placeholder'); this.remove()"/>
+                 onerror="this.parentElement.innerHTML='<span class=&quot;msym proj-img-placeholder&quot;>insights</span>'"/>
           </div>
           <div class="proj-body">
-            <span class="proj-tag">Excel · Pivot Tables · Slicers</span>
+            <span class="proj-tag">Analytics · Excel</span>
             <h3>Retail Sales Data Analysis</h3>
             <p>Excel-based retail sales analysis identifying patterns across regions, categories, and sub-categories with a fully interactive dashboard.</p>
-            <div class="proj-footer">
-              <a href="https://github.com/abdulla-cc/sales-data-analysis" target="_blank" class="proj-link">GitHub →</a>
-              <button onclick="openCaseStudy(1)" class="proj-link">Case Study →</button>
+            <div class="proj-links">
+              <a href="https://github.com/abdulla-cc/sales-data-analysis" target="_blank" rel="noopener" class="proj-link">
+                <span class="msym">code</span> GitHub
+              </a>
+              <button onclick="openCaseStudy(1)" class="proj-link">
+                <span class="msym">description</span> Case Study
+              </button>
             </div>
           </div>
         </div>
@@ -208,30 +247,36 @@
         <div class="proj-card reveal reveal-delay-1">
           <div class="proj-img-wrap">
             <img src="hr-dashboard.png" alt="HR Analytics Dashboard" class="proj-img"
-              onerror="this.parentElement.classList.add('proj-img-placeholder'); this.remove()"/>
+                 onerror="this.parentElement.innerHTML='<span class=&quot;msym proj-img-placeholder&quot;>bar_chart</span>'"/>
           </div>
           <div class="proj-body">
-            <span class="proj-tag">Power BI · DAX · Excel</span>
+            <span class="proj-tag">Power BI · DAX</span>
             <h3>HR Analytics Dashboard</h3>
-            <p>Power BI dashboard analyzing employee attrition. Overall rate 16.12% — R&amp;D identified as the highest-risk department.</p>
-            <div class="proj-footer">
-              <a href="https://github.com/abdulla-cc/hr-analytics-analysis" target="_blank" class="proj-link">GitHub →</a>
-              <button onclick="openCaseStudy(2)" class="proj-link">Case Study →</button>
+            <p>Power BI dashboard analysing employee attrition. Overall rate 16.12% — R&amp;D identified as the highest-risk department.</p>
+            <div class="proj-links">
+              <a href="https://github.com/abdulla-cc/hr-analytics-analysis" target="_blank" rel="noopener" class="proj-link">
+                <span class="msym">code</span> GitHub
+              </a>
+              <button onclick="openCaseStudy(2)" class="proj-link">
+                <span class="msym">description</span> Case Study
+              </button>
             </div>
           </div>
         </div>
 
         <!-- Project 3 -->
         <div class="proj-card reveal reveal-delay-2">
-          <div class="proj-img-wrap proj-img-placeholder">
-            <span>🗄️</span>
+          <div class="proj-img-wrap">
+            <span class="msym proj-img-placeholder">database</span>
           </div>
           <div class="proj-body">
-            <span class="proj-tag">SQL · MySQL · Database Design</span>
+            <span class="proj-tag">SQL · Database Design</span>
             <h3>Student Management System</h3>
-            <p>Normalized SQL database managing students, courses, and enrollments. Demonstrates advanced schema design and query optimization.</p>
-            <div class="proj-footer">
-              <button onclick="openCaseStudy(3)" class="proj-link">Case Study →</button>
+            <p>Normalized SQL database managing students, courses, and enrollments. Demonstrates advanced schema design and query optimisation.</p>
+            <div class="proj-links">
+              <button onclick="openCaseStudy(3)" class="proj-link">
+                <span class="msym">description</span> Case Study
+              </button>
             </div>
           </div>
         </div>
@@ -240,15 +285,19 @@
         <div class="proj-card reveal">
           <div class="proj-img-wrap">
             <img src="Risk_analysis_dashboard.png" alt="HR Analytics Pipeline" class="proj-img"
-              onerror="this.parentElement.classList.add('proj-img-placeholder'); this.remove()"/>
+                 onerror="this.parentElement.innerHTML='<span class=&quot;msym proj-img-placeholder&quot;>model_training</span>'"/>
           </div>
           <div class="proj-body">
-            <span class="proj-tag">Python · SQL · Power BI · Pandas</span>
+            <span class="proj-tag">Python · SQL · Power BI</span>
             <h3>HR Analytics Pipeline</h3>
-            <p>End-to-end pipeline analyzing 1,470 employee records. Sales Reps flagged at 39.76% attrition — highest across all job roles.</p>
-            <div class="proj-footer">
-              <a href="https://github.com/abdulla-cc/HR-Analytics-Pipeline" target="_blank" class="proj-link">GitHub →</a>
-              <button onclick="openCaseStudy(4)" class="proj-link">Case Study →</button>
+            <p>End-to-end pipeline analysing 1,470 employee records. Sales Reps flagged at 39.76% attrition — highest across all roles.</p>
+            <div class="proj-links">
+              <a href="https://github.com/abdulla-cc/HR-Analytics-Pipeline" target="_blank" rel="noopener" class="proj-link">
+                <span class="msym">code</span> GitHub
+              </a>
+              <button onclick="openCaseStudy(4)" class="proj-link">
+                <span class="msym">description</span> Case Study
+              </button>
             </div>
           </div>
         </div>
@@ -258,90 +307,136 @@
   </section>
 
   <!-- ===== CTA BANNER ===== -->
-  <div class="cta-banner reveal">
-    <div class="container cta-inner">
-      <h2>Looking to hire a Data Analyst?<br>Let's work together!</h2>
-      <p>I'm actively seeking internship opportunities in Data Analytics, BI, or AI. Let's build something impactful together.</p>
-      <a href="mailto:abdullah130306@gmail.com" class="btn-primary">Let's work Together &rarr;</a>
+  <div class="cta-banner-wrap container reveal">
+    <div class="cta-banner">
+      <div class="cta-blob"></div>
+      <h2>Let's build something data-driven together.</h2>
+      <p>I'm actively seeking internship opportunities in Data Analytics, BI, or AI. Let's turn your data into a real advantage.</p>
+      <a href="mailto:abdullah130306@gmail.com" class="btn btn-primary">
+        Start a conversation
+        <span class="msym">arrow_forward</span>
+      </a>
     </div>
   </div>
 
   <!-- ===== CERTIFICATIONS ===== -->
-  <section id="certifications">
+  <section id="certs" class="section section-surface">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header-center reveal">
+        <span class="eyebrow">Credentials</span>
         <h2>Certifications</h2>
-        <p>Verified credentials from industry-leading organisations, demonstrating continuous learning and technical breadth.</p>
       </div>
       <div class="certs-grid">
-        <div class="cert-card-new reveal">
-          <div class="cert-logo-new ms">MS</div>
-          <div><h4>Microsoft Power BI for Beginners</h4><span>Microsoft &middot; Dec 2025</span></div>
+        <div class="cert-card reveal">
+          <div class="cert-icon"><span class="msym">workspace_premium</span></div>
+          <div class="cert-body">
+            <h4>Microsoft Power BI for Beginners</h4>
+            <div class="cert-issuer">Microsoft · Dec 2025</div>
+            <span class="cert-badge">Verified</span>
+          </div>
         </div>
-        <div class="cert-card-new reveal reveal-delay-1">
-          <div class="cert-logo-new g">G</div>
-          <div><h4>Google Analytics Certification</h4><span>Google &middot; Nov 2025</span></div>
+        <div class="cert-card reveal reveal-delay-1">
+          <div class="cert-icon"><span class="msym">analytics</span></div>
+          <div class="cert-body">
+            <h4>Google Analytics Certification</h4>
+            <div class="cert-issuer">Google · Nov 2025</div>
+            <span class="cert-badge">Verified</span>
+          </div>
         </div>
-        <div class="cert-card-new reveal reveal-delay-2">
-          <div class="cert-logo-new cs">CS</div>
-          <div><h4>CCNA: Introduction to Networks</h4><span>Cisco &middot; Feb 2026</span></div>
+        <div class="cert-card reveal reveal-delay-2">
+          <div class="cert-icon"><span class="msym">hub</span></div>
+          <div class="cert-body">
+            <h4>CCNA: Introduction to Networks</h4>
+            <div class="cert-issuer">Cisco · Feb 2026</div>
+            <span class="cert-badge">Verified</span>
+          </div>
         </div>
-        <div class="cert-card-new reveal">
-          <div class="cert-logo-new hw">HW</div>
-          <div><h4>HCIA-AI V4.0</h4><span>Huawei &middot; Feb 2026</span></div>
+        <div class="cert-card reveal">
+          <div class="cert-icon"><span class="msym">cloud</span></div>
+          <div class="cert-body">
+            <h4>HCIA-AI V4.0</h4>
+            <div class="cert-issuer">Huawei · Feb 2026</div>
+            <span class="cert-badge">Verified</span>
+          </div>
         </div>
-        <div class="cert-card-new reveal reveal-delay-1">
-          <div class="cert-logo-new pe">PE</div>
-          <div><h4>Prompt Engineering Masterclass</h4><span>Great Learning &middot; Mar 2026</span></div>
+        <div class="cert-card featured reveal reveal-delay-1">
+          <div class="cert-icon"><span class="msym">science</span></div>
+          <div class="cert-body">
+            <h4>Prompt Engineering Masterclass</h4>
+            <div class="cert-issuer">Great Learning · Mar 2026</div>
+            <span class="cert-badge mastery">Mastery</span>
+          </div>
         </div>
-        <div class="cert-card-new reveal reveal-delay-2">
-          <div class="cert-logo-new ibm">IBM</div>
-          <div><h4>IBM Data Analyst Professional Certificate</h4><span class="in-progress">In Progress</span></div>
+        <div class="cert-card reveal reveal-delay-2">
+          <div class="cert-icon"><span class="msym">model_training</span></div>
+          <div class="cert-body">
+            <h4>IBM Data Analyst Professional Certificate</h4>
+            <div class="cert-issuer">IBM · 2026</div>
+            <span class="cert-badge in-progress">In Progress</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="section-gray">
+  <!-- ===== CONTACT & EDUCATION ===== -->
+  <section id="contact">
     <div class="container contact-grid">
-
-      <div class="reveal">
-        <span class="section-tag">Get In Touch</span>
-        <h2>Let's <span class="accent-text">Work Together</span></h2>
-        <p>I'm actively looking for Data Analyst, BI, or AI internship opportunities. If you have a role, a project, or just want to connect — reach out!</p>
+      <div class="contact-col reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Contact</h2>
         <div class="contact-items">
           <a href="mailto:abdullah130306@gmail.com" class="contact-item">
-            <span class="contact-item-icon">✉️</span>
-            <div><strong>Email</strong><br><span>abdullah130306@gmail.com</span></div>
+            <div class="contact-icon"><span class="msym">mail</span></div>
+            <div class="contact-meta">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">abdullah130306@gmail.com</span>
+            </div>
           </a>
           <a href="https://www.linkedin.com/in/abdalla-nadir-a6841532b/" target="_blank" rel="noopener" class="contact-item">
-            <span class="contact-item-icon">💼</span>
-            <div><strong>LinkedIn</strong><br><span>abdalla-nadir-a6841532b</span></div>
+            <div class="contact-icon"><span class="msym">hub</span></div>
+            <div class="contact-meta">
+              <span class="contact-label">LinkedIn</span>
+              <span class="contact-value">abdalla-nadir-a6841532b</span>
+            </div>
           </a>
           <a href="https://github.com/abdulla-cc" target="_blank" rel="noopener" class="contact-item">
-            <span class="contact-item-icon">🐙</span>
-            <div><strong>GitHub</strong><br><span>github.com/abdulla-cc</span></div>
+            <div class="contact-icon"><span class="msym">code</span></div>
+            <div class="contact-meta">
+              <span class="contact-label">GitHub</span>
+              <span class="contact-value">github.com/abdulla-cc</span>
+            </div>
           </a>
+          <div class="contact-item" style="cursor:default;">
+            <div class="contact-icon"><span class="msym">location_on</span></div>
+            <div class="contact-meta">
+              <span class="contact-label">Location</span>
+              <span class="contact-value">Melaka, Malaysia</span>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="reveal reveal-delay-1">
-        <span class="section-tag">Education</span>
-        <h2>Academic <span class="accent-text">Background</span></h2>
-        <div class="edu-block">
-          <div class="edu-block-header">
-            <div>
-              <h3>Bachelor of Computer Science</h3>
-              <p class="edu-spec">(Artificial Intelligence)</p>
-            </div>
-            <span class="edu-gpa-badge">GPA 3.4</span>
+      <div class="edu-col reveal reveal-delay-1">
+        <span class="eyebrow">Background</span>
+        <h2>Education</h2>
+        <div class="edu-timeline">
+          <div class="edu-item">
+            <div class="edu-date">MAR 2024 — MAR 2027</div>
+            <h3>BSc Computer Science (Artificial Intelligence)</h3>
+            <div class="edu-org">Multimedia University, Melaka, Malaysia</div>
+            <div class="edu-note">GPA 3.4 · Dean's List · Arabic Culture Society — High Committee</div>
           </div>
-          <p class="edu-uni">Multimedia University, Melaka, Malaysia</p>
-          <p class="edu-date">Mar 2024 — Mar 2027</p>
-          <div class="edu-badges">
-            <span class="edu-badge">🏆 Dean's List</span>
-            <span class="edu-badge">🎭 Arabic Culture Society — High Committee</span>
+          <div class="edu-item">
+            <div class="edu-date">2025 — 2026</div>
+            <h3>Industry Certifications</h3>
+            <div class="edu-org">Microsoft · Google · Cisco · Huawei · IBM</div>
+            <div class="edu-note">Power BI, Google Analytics, CCNA, HCIA-AI, Data Analyst track.</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-date">SELF-DIRECTED</div>
+            <h3>Applied Projects</h3>
+            <div class="edu-org">End-to-end analytics &amp; BI work</div>
+            <div class="edu-note">Excel, Power BI, SQL, and Python pipelines on real datasets.</div>
           </div>
         </div>
       </div>
@@ -350,22 +445,26 @@
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    <div class="container footer-inner">
-      <a href="#hero" class="nav-logo">
+    <div class="footer-inner">
+      <div class="footer-brand">
         <span class="nav-logo-icon">AN</span>
-        Abdalla Nadir
-      </a>
-      <p>Designed &amp; built by Abdalla Nadir &middot; <span id="year"></span></p>
+        <p>© <span id="year"></span> Abdalla Nadir. All rights reserved.</p>
+      </div>
       <div class="footer-links">
-        <a href="https://github.com/abdulla-cc" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/abdalla-nadir-a6841532b/" target="_blank">LinkedIn</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certs">Certs</a>
         <a href="CV.pdf" download>Download CV</a>
       </div>
     </div>
   </footer>
 
   <!-- ===== BACK TO TOP ===== -->
-  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <span class="msym">arrow_upward</span>
+  </button>
 
   <!-- ===== CASE STUDY MODAL ===== -->
   <div id="caseStudyModal" class="cs-overlay" role="dialog" aria-modal="true" aria-label="Case Study">
@@ -375,7 +474,9 @@
           <span class="cs-tag" id="csTag"></span>
           <h2 class="cs-title" id="csTitle"></h2>
         </div>
-        <button class="cs-close" onclick="closeCaseStudy()" aria-label="Close">✕</button>
+        <button class="cs-close" onclick="closeCaseStudy()" aria-label="Close">
+          <span class="msym">close</span>
+        </button>
       </div>
       <div class="cs-body" id="csBody"></div>
     </div>

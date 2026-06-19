@@ -1,13 +1,12 @@
 /* ======================================================
    ABDALLA NADIR — PORTFOLIO JAVASCRIPT
-   Brooklyn-inspired design
+   - Theme toggle (dark/light, localStorage-persisted)
    - Case study modal
    - Scroll reveal animations
    - Active nav link highlighting
    - Mobile menu toggle
-   - Back to top button
+   - Back-to-top button
    - Footer year
-   - Name pronunciation
 ====================================================== */
 
 /* ===== CASE STUDY DATA ===== */
@@ -55,11 +54,10 @@ const caseStudies = [
     problem: 'Identify the key drivers of employee attrition in a retail company and build a system to flag high-risk employees before they leave.',
     dataset: 'IBM HR Employee Attrition dataset — 1,470 employees, 35 columns. Source: Kaggle.',
     tools: ['Python', 'Pandas', 'SQL', 'SQLite', 'Power BI', 'DAX', 'openpyxl'],
-    process: 'Loaded and explored data → cleaned and encoded columns (OverTime, Gender, BusinessTravel) → engineered 3 new features (IncomePerYear, TenureRoleRatio, SeniorityScore) → built SQLite database with advanced SQL (CTEs, window functions, views) → identified 113 high-risk employees → auto-generated Excel report → built 2-page Power BI dashboard with 5 DAX measures.',
+    process: 'Loaded and explored data → cleaned and encoded columns → engineered 3 new features (IncomePerYear, TenureRoleRatio, SeniorityScore) → built SQLite database with advanced SQL → identified 113 high-risk employees → auto-generated Excel report → built 2-page Power BI dashboard with 5 DAX measures.',
     insights: 'Sales Representatives earn the least ($2,626 avg) and leave at 39.76% — the highest attrition rate across all job roles.',
-    output: '2-page Power BI dashboard — Page 1: professional overview with navy theme. Page 2: dark neon risk analysis with insight cards and high-risk employee flags.',
-    images: ['Overview_dashboard.png', 'income_vs_attrition.png'],
-    learned: 'End-to-end data pipeline design, advanced SQL, DAX in Power BI, feature engineering, automated Excel reporting with openpyxl, and presenting complex findings to business stakeholders.'
+    output: '2-page Power BI dashboard — overview with navy theme and a dark neon risk analysis page with insight cards and high-risk employee flags.',
+    learned: 'End-to-end data pipeline design, advanced SQL, DAX in Power BI, feature engineering, automated Excel reporting with openpyxl, and presenting findings to business stakeholders.'
   }
 ];
 
@@ -67,7 +65,7 @@ const caseStudies = [
 function buildSection(icon, label, content, extraClass = '') {
   return `
     <div class="cs-section ${extraClass}">
-      <div class="cs-section-label"><span class="cs-icon">${icon}</span>${label}</div>
+      <div class="cs-section-label"><span class="msym">${icon}</span>${label}</div>
       ${content}
     </div>`;
 }
@@ -81,24 +79,15 @@ function openCaseStudy(n) {
 
   const toolsHtml = `<div class="cs-tools">${cs.tools.map(t => `<span class="cs-tool-chip">${t}</span>`).join('')}</div>`;
 
-  let imagesHtml = '';
-  if (cs.images && cs.images.length > 0) {
-    const imgs = cs.images.map(src =>
-      `<img src="${src}" alt="Case Study Image" style="width:100%;border-radius:8px;margin-top:8px;">`
-    ).join('');
-    imagesHtml = buildSection('🖼️', 'Gallery', `<div>${imgs}</div>`, 'full-width');
-  }
-
   document.getElementById('csBody').innerHTML =
-    buildSection('📄', 'Overview',     `<p>${cs.overview}</p>`,  'full-width') +
-    buildSection('🎯', 'Problem',      `<p>${cs.problem}</p>`) +
-    buildSection('📊', 'Dataset',      `<p>${cs.dataset}</p>`) +
-    buildSection('🛠',  'Tools Used',  toolsHtml) +
-    buildSection('⚙️', 'Process',      `<p>${cs.process}</p>`,   'full-width') +
-    buildSection('💡', 'Key Insights', `<p>${cs.insights}</p>`,  'full-width') +
-    buildSection('📁', 'Final Output', `<p>${cs.output}</p>`,    'full-width') +
-    imagesHtml +
-    buildSection('🎓', 'What I Learned', `<p>${cs.learned}</p>`, 'full-width cs-learned');
+    buildSection('description', 'Overview',     `<p>${cs.overview}</p>`,  'full-width') +
+    buildSection('flag',        'Problem',      `<p>${cs.problem}</p>`) +
+    buildSection('database',    'Dataset',      `<p>${cs.dataset}</p>`) +
+    buildSection('build',       'Tools Used',   toolsHtml) +
+    buildSection('settings',    'Process',      `<p>${cs.process}</p>`,   'full-width') +
+    buildSection('lightbulb',   'Key Insights', `<p>${cs.insights}</p>`,  'full-width') +
+    buildSection('inventory_2', 'Final Output', `<p>${cs.output}</p>`,    'full-width') +
+    buildSection('school',      'What I Learned', `<p>${cs.learned}</p>`, 'full-width cs-learned');
 
   document.getElementById('caseStudyModal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -109,111 +98,65 @@ function closeCaseStudy() {
   document.body.style.overflow = '';
 }
 
-/* ===== NAME PRONUNCIATION ===== */
-let loadedVoices = [];
-
-function speakName() {
-  const btn = document.getElementById('speakNameBtn');
-  if (!('speechSynthesis' in window)) { alert('Voice not supported in this browser.'); return; }
-  speechSynthesis.cancel();
-  setTimeout(() => {
-    const utterance = new SpeechSynthesisUtterance('Abdalla Nadir');
-    utterance.lang  = 'en-US';
-    utterance.rate  = 0.85;
-    utterance.pitch = 1;
-    utterance.volume = 1;
-    const voices = loadedVoices.length ? loadedVoices : speechSynthesis.getVoices();
-    const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha')))
-      || voices.find(v => v.lang.startsWith('en-US'))
-      || voices.find(v => v.lang.startsWith('en'));
-    if (preferred) utterance.voice = preferred;
-    if (btn) btn.classList.add('speaking');
-    utterance.onend  = () => btn && btn.classList.remove('speaking');
-    utterance.onerror = () => btn && btn.classList.remove('speaking');
-    speechSynthesis.speak(utterance);
-  }, 120);
+/* ===== THEME TOGGLE =====
+   Initial theme is already applied by the inline script in <head>
+   to avoid a flash. Here we wire the button and persist user choice. */
+function applyThemeIcon(theme) {
+  const icon = document.getElementById('themeIcon');
+  if (!icon) return;
+  // In dark mode show the light_mode icon (action = switch to light), and vice versa.
+  icon.textContent = theme === 'dark' ? 'light_mode' : 'dark_mode';
 }
 
-if ('speechSynthesis' in window) {
-  function cacheVoices() { loadedVoices = speechSynthesis.getVoices(); }
-  cacheVoices();
-  speechSynthesis.onvoiceschanged = cacheVoices;
-}
-
-/* ===== THEME TOGGLE ===== */
 function initTheme() {
   const html = document.documentElement;
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.getElementById('themeIcon');
+  const current = html.getAttribute('data-theme') || 'dark';
+  applyThemeIcon(current);
 
-  // Get saved theme or default to light
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  html.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-      html.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcon(newTheme);
-    });
-  }
-}
-
-function updateThemeIcon(theme) {
-  const themeIcon = document.getElementById('themeIcon');
-  if (themeIcon) {
-    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
+  btn.addEventListener('click', () => {
+    const now = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', now);
+    try { localStorage.setItem('theme', now); } catch (e) {}
+    applyThemeIcon(now);
+  });
 }
 
 /* ===== DOM READY ===== */
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ----- Initialize theme ----- */
   initTheme();
 
-  /* ----- Footer year ----- */
+  /* Footer year */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ----- Close modal on backdrop click ----- */
+  /* Close modal on backdrop click */
   const modal = document.getElementById('caseStudyModal');
   if (modal) {
-    modal.addEventListener('click', function(e) {
-      if (e.target === this) closeCaseStudy();
-    });
+    modal.addEventListener('click', e => { if (e.target === modal) closeCaseStudy(); });
   }
 
-  /* ----- Close modal on Escape ----- */
+  /* Close modal on Escape */
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeCaseStudy();
   });
 
-  /* ----- Mobile menu toggle ----- */
+  /* Mobile menu toggle */
   const hamburger  = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.style.display === 'flex';
-      mobileMenu.style.display = isOpen ? 'none' : 'flex';
-    });
-
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
     mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.style.display = 'none';
-      });
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
     });
   }
 
-  /* ----- Active nav link on scroll ----- */
+  /* Active nav link on scroll */
   const sections = document.querySelectorAll('section[id]');
   const navLinks  = document.querySelectorAll('.nav-link');
-
   const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -223,18 +166,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, { threshold: 0.4 });
-
   sections.forEach(s => navObserver.observe(s));
 
-  /* ----- Back to Top button ----- */
+  /* Back to Top */
   const backToTop = document.getElementById('backToTop');
   if (backToTop) {
     window.addEventListener('scroll', () => {
       backToTop.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  /* ----- Scroll reveal ----- */
+  /* Scroll reveal */
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -243,27 +186,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* ----- Smooth scroll for all anchor links ----- */
+  /* Smooth scroll for anchor links */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
-      const target = document.querySelector(link.getAttribute('href'));
+      const href = link.getAttribute('href');
+      if (href === '#' || href.length < 2) return;
+      const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
-
-  /* ----- Subtle parallax on hero blob ----- */
-  const blob = document.querySelector('.hero-blob');
-  if (blob) {
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      blob.style.transform = `translateY(${y * 0.12}px)`;
-    }, { passive: true });
-  }
 
 });
