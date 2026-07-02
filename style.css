@@ -753,6 +753,14 @@ h1, h2, h3, h4 {
 .proj-card:hover .proj-img-placeholder {
   transform: scale(1.08) translateY(-2px);
 }
+.proj-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.proj-card:hover .proj-img { transform: scale(1.04); }
 
 .proj-body {
   padding: 24px;
