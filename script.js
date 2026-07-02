@@ -82,6 +82,18 @@ const caseStudies = [
     insights: 'Applying SMOTE only on the training split lifted minority-class F1 to 0.76 — the clinical model stays viable for detecting at-risk patients rather than defaulting to majority-class. Clinical pipeline hit 82% test accuracy on the minority class; behavioral pipeline reached 79.4% accuracy with balanced precision / recall (0.79 / 0.80).',
     output: 'Two production-style XGBoost classifiers published as shareable Google Colab notebooks — one for clinical-feature input, one for behavioral / socioeconomic input, both with reproducible training pipelines and confusion-matrix validation.',
     learned: 'Disciplined class-imbalance handling (SMOTE on training only, never test), large-scale hyperparameter optimisation, interaction-feature engineering for clinical interpretability, and treating confusion matrices — not raw accuracy — as the real metric for medical ML.'
+  },
+  {
+    tag: 'NLP · Live Deployment',
+    title: 'YouTube AI Sentiment Tracker',
+    overview: 'A live, self-updating dashboard measuring public sentiment toward ChatGPT, Gemini, and Microsoft Copilot from real YouTube comments — scored by a RoBERTa transformer and refreshed automatically every Monday via GitHub Actions.',
+    problem: 'Are people getting more negative toward AI tools as they go mainstream? Instead of guessing, this project measures it — one falsifiable anchor question answered with real data: "Has public sentiment toward AI tools gotten more negative over time?"',
+    dataset: '650+ real YouTube comments collected from videos about ChatGPT, Gemini, and Microsoft Copilot via the YouTube Data API v3 (free tier). ~89% English after language detection; only English comments are sentiment-scored.',
+    tools: ['Python', 'YouTube Data API v3', 'SQLite', 'HuggingFace Transformers (RoBERTa)', 'langdetect', 'pandas', 'Streamlit', 'Plotly', 'GitHub Actions'],
+    process: 'Collect (paginated API pulls) → Store (SQLite with schema-level deduplication via PRIMARY KEY + INSERT OR IGNORE) → Detect language (langdetect) → Score sentiment (RoBERTa transformer: cardiffnlp/twitter-roberta-base-sentiment-latest) → Aggregate (confidence-weighted monthly scores: label direction × model confidence) → Visualize (Streamlit + Plotly) → Automate (GitHub Actions weekly refresh with repo write-back).',
+    insights: 'YouTube commenter sentiment leans negative ~3:1 across all three AI tools, with Copilot trending most consistently negative in recent months (overall ≈ -0.18 on a -1 to +1 scale).',
+    output: 'A deployed public Streamlit dashboard with KPI cards, an interactive monthly sentiment chart where dot size encodes sample size (data reliability shown honestly, not hidden), a viewer-controlled minimum-comments filter, real sample comments (most positive / negative per tool), and the raw monthly data table. The entire pipeline re-runs automatically every Monday via GitHub Actions — the dashboard stays live with zero manual work.',
+    learned: 'End-to-end pipeline design, working with a real transformer model instead of rule-based sentiment tools, confidence-weighted aggregation, honest visualization of sparse data, and — most importantly — production skills a notebook never teaches: making scripts idempotent for automation, debugging a schema that worked locally but broke in CI, GitHub Actions permission scopes, and resolving merge conflicts with my own automation bot.'
   }
 ];
 

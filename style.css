@@ -790,6 +790,21 @@ h1, h2, h3, h4 {
 .proj-link:hover { color: var(--gold); }
 .proj-link .msym { font-size: 16px; }
 
+.proj-link.primary {
+  background: var(--gold);
+  color: var(--on-gold);
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+.proj-link.primary:hover {
+  background: var(--gold-2);
+  color: var(--on-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(242, 202, 80, 0.25);
+}
+
 /* ============================================================
    CTA BANNER (always dark, both themes)
 ============================================================ */
