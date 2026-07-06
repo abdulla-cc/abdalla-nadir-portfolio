@@ -18,7 +18,7 @@ export function Hero() {
       {/* Animated WebGL starfield in dark mode; ambient gold blobs in light mode.
           mix-blend-screen makes the shader's black background transparent over the navy bg. */}
       {theme === 'dark' ? (
-        <ShaderBackground className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-50 mix-blend-screen" />
+        <ShaderBackground className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-60 mix-blend-screen" />
       ) : (
         <>
           <div className="animate-blob-a pointer-events-none absolute -top-20 -right-15 z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,var(--gold)_0%,transparent_70%)] opacity-[0.14] blur-[30px]" />
