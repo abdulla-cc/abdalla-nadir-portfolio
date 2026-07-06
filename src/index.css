@@ -3,19 +3,20 @@
 /* ---------- Theme tokens (black & gold, dark default) ---------- */
 :root,
 :root[data-theme="dark"] {
-  --bg:         #0a0e27;
-  --surface:    #1a2847;
-  --surface-2:  #16203c;
-  --card:       #141d3a;
-  --text:       #dae3f0;
-  --text-dim:   #8a97b8;
+  /* Warm near-black palette matched to the hero's golden nebula shader */
+  --bg:         #0e0804;
+  --surface:    #241708;
+  --surface-2:  #1b1006;
+  --card:       #180f07;
+  --text:       #f2e8d9;
+  --text-dim:   #b3a183;
   --gold:       #f2ca50;
   --gold-2:     #d4af37;
-  --on-gold:    #0a0e27;
+  --on-gold:    #0e0804;
   --border:     rgba(242, 202, 80, 0.20);
-  --border-soft:rgba(218, 227, 240, 0.08);
+  --border-soft:rgba(242, 232, 217, 0.08);
   --shadow:     0 24px 60px rgba(0, 0, 0, 0.5);
-  --nav-bg:     rgba(10, 14, 39, 0.72);
+  --nav-bg:     rgba(14, 8, 4, 0.72);
 }
 
 :root[data-theme="light"] {
