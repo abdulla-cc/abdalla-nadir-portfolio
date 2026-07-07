@@ -104,4 +104,17 @@ export const caseStudies: Record<string, CaseStudy> = {
     output: 'A deployed public Streamlit dashboard with KPI cards, an interactive monthly sentiment chart where dot size encodes sample size (data reliability shown honestly, not hidden), a viewer-controlled minimum-comments filter, real sample comments (most positive / negative per tool), and the raw monthly data table. The entire pipeline re-runs automatically every Monday via GitHub Actions — the dashboard stays live with zero manual work.',
     learned: 'End-to-end pipeline design, working with a real transformer model instead of rule-based sentiment tools, confidence-weighted aggregation, honest visualization of sparse data, and — most importantly — production skills a notebook never teaches: making scripts idempotent for automation, debugging a schema that worked locally but broke in CI, GitHub Actions permission scopes, and resolving merge conflicts with my own automation bot.',
   },
+  'domain-expansion': {
+    id: 'domain-expansion',
+    tag: 'Computer Vision · Personal Project',
+    title: 'Domain Expansion Classifier',
+    overview: "Inspired by anime 'domain expansion' hand signs, this project recognizes different hand mudras through a webcam and reacts with custom particle and animation effects in real time — including a 'clash' mode where two people making different signs at once trigger a resolution based on a hierarchy.",
+    problem: 'Anime power-ups look cool because the hand signs are precise and instantly recognizable — so the challenge was making a webcam actually tell them apart in real time, robustly enough to survive different hands, lighting, and backgrounds, without ever touching copyrighted anime footage.',
+    dataset: 'A self-collected webcam dataset, hand-cropped using MediaPipe landmark detection across multiple gesture classes and lighting conditions.',
+    tools: ['Python', 'PyTorch', 'torchvision (MobileNetV2)', 'OpenCV', 'MediaPipe', 'scikit-learn'],
+    process: "Collected my own webcam training dataset and cropped it to hand regions using MediaPipe. Trained a CNN from scratch, then compared it against a fine-tuned MobileNetV2 (transfer learning) and documented the accuracy/speed tradeoffs. Built a real-time inference loop in OpenCV with confidence-based decision logic, designed original particle and animation effects per gesture, and extended the system to detect two people simultaneously via a custom hand-clustering heuristic — enabling multiplayer 'clash' interactions.",
+    insights: "Hit suspiciously perfect training accuracy early on — turned out the model had learned to recognize my background, not my hand (a classic case of shortcut learning). Fixing it meant confronting real train/inference mismatches, not just tuning hyperparameters.",
+    output: "A live webcam app: hold up a gesture, get an instant animated reaction; hold up two different ones with a friend, and watch the 'clash' logic decide who wins.",
+    learned: 'Training and evaluating CNNs from scratch, transfer learning tradeoffs, building real-time computer vision pipelines, and debugging real ML failure modes like shortcut learning and train/inference mismatches — the kind of bugs a tutorial never prepares you for.',
+  },
 }
