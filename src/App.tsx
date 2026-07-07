@@ -6,6 +6,7 @@ import { Hero } from './components/Hero'
 import { About } from './components/About'
 import { Skills } from './components/Skills'
 import { Projects } from './components/Projects'
+import { PersonalProjects } from './components/PersonalProjects'
 import { CtaBanner } from './components/CtaBanner'
 import { Certifications } from './components/Certifications'
 import { Contact } from './components/Contact'
@@ -25,6 +26,7 @@ export default function App() {
         <About />
         <Skills />
         <Projects onOpenCaseStudy={setCaseStudyId} />
+        <PersonalProjects onOpenCaseStudy={setCaseStudyId} />
         <CtaBanner />
         <Certifications />
         <Contact />
