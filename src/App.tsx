@@ -26,9 +26,9 @@ export default function App() {
         <About />
         <Skills />
         <Projects onOpenCaseStudy={setCaseStudyId} />
-        <PersonalProjects onOpenCaseStudy={setCaseStudyId} />
-        <CtaBanner />
         <Certifications />
+        <CtaBanner />
+        <PersonalProjects onOpenCaseStudy={setCaseStudyId} />
         <Contact />
       </main>
       <Footer />
