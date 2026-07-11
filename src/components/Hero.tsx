@@ -28,10 +28,6 @@ export function Hero() {
 
       <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-6 md:px-8 lg:grid-cols-[1.25fr_0.9fr] lg:gap-16 lg:px-12">
         <Reveal className="relative z-1 flex flex-col items-center text-center lg:items-start lg:text-left">
-          <span className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-line px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-gold">
-            <span className="pulse-dot h-[7px] w-[7px] rounded-full bg-gold shadow-[0_0_12px_var(--gold)]" />
-            Available for internship
-          </span>
           <h1 className="mb-6 text-4xl font-extrabold leading-[1.05] text-balance md:text-5xl lg:text-[clamp(40px,6vw,60px)]">
             Turning data into <span className="text-gold">insights</span> &amp; smarter{' '}
             <span className="text-gold">decisions</span>.
