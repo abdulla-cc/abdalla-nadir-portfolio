@@ -30,6 +30,7 @@ export const projects: Project[] = [
     tag: 'Featured · Final Year Project',
     title: 'AI-Powered Supply Chain Optimization & Risk Management (SCOMS)',
     description: 'A three-module AI pipeline for retail supply chain decision support: LSTM demand forecasting, Random Forest supplier risk classification, and dynamic EOQ / ROP inventory optimization — unified in a Streamlit dashboard with role-based recommendations for store managers. Final Year Project, B.CS (AI), MMU.',
+    image: 'scoms-architecture.png',
     placeholderIcon: Package,
     featured: true,
     status: 'In Progress · Expected Mar 2027',
@@ -79,6 +80,7 @@ export const projects: Project[] = [
     tag: 'SQL · Database Design',
     title: 'Student Management System',
     description: 'Normalized SQL database managing students, courses, and enrollments. Demonstrates advanced schema design and query optimisation.',
+    image: 'student-db-erd.png',
     placeholderIcon: GraduationCap,
     links: [],
     caseStudyId: 'student-db',
@@ -100,6 +102,7 @@ export const projects: Project[] = [
     tag: 'Machine Learning · 2025',
     title: 'XGBoost Diabetes Risk Models',
     description: 'Two parallel XGBoost classifiers predicting diabetes onset — a 2,000-patient clinical pipeline (SMOTE-balanced, 5-fold GridSearchCV over 432 hyperparameter combos → 82% test accuracy on the minority class, F1 0.76) and a 13-feature behavioral / socioeconomic pipeline (stratified splits + StandardScaler → 79.4% accuracy, balanced 0.79 / 0.80 precision & recall).',
+    image: 'diabetes-metrics.png',
     placeholderIcon: FlaskConical,
     links: [
       { label: 'Clinical Notebook', href: 'https://colab.research.google.com/drive/1awAt7c-XUoYg-JzDu5UyAWgEoIxCRlNC?usp=sharing', icon: 'notebook' },
