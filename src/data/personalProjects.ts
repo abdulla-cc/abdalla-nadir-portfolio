@@ -8,7 +8,8 @@ export const personalProjects: Project[] = [
     title: 'Domain Expansion Classifier',
     description:
       'A real-time computer vision app that recognizes anime-inspired hand-sign gestures via webcam and triggers custom animated effects — built to learn CNNs, transfer learning, and real-time inference hands-on.',
-    // No screenshot yet — add `image: 'domain-expansion-demo.png'` once it's in public/.
+    // Stylized pipeline illustration — swap for 'domain-expansion-demo.png' once a real demo capture exists.
+    image: 'domain-expansion-illustration.png',
     placeholderIcon: Hand,
     tech: ['Python', 'PyTorch', 'torchvision (MobileNetV2)', 'OpenCV', 'MediaPipe', 'scikit-learn'],
     links: [
