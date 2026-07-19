@@ -13,6 +13,19 @@ export interface CaseStudy {
 }
 
 export const caseStudies: Record<string, CaseStudy> = {
+  'research-agent': {
+    id: 'research-agent',
+    tag: 'Featured · Jul 2026',
+    title: 'Research Agent — Agentic RAG System over arXiv Papers',
+    overview: 'An end-to-end retrieval-augmented generation system that answers questions about a corpus of arXiv papers with cited, source-grounded answers. Exposes two pipelines: a fast single-shot RAG endpoint for straightforward queries, and an agentic pipeline that decomposes complex questions into sub-questions, retrieves per sub-question, and runs a critic/verifier pass against the generated answer.',
+    problem: 'A single-shot RAG call answers simple questions fine but breaks down on multi-part research questions, and there is no built-in check that the answer is actually grounded in what was retrieved — so a wrong or fabricated answer looks identical to a correct one unless someone manually checks the citations.',
+    dataset: 'A corpus of arXiv papers, chunked and embedded for retrieval — cleaned with a conservative junk-filter that strips noisy PDF-extraction artifacts (reference lists, tables, title-page headers) before they can pollute retrieval.',
+    tools: ['Python', 'FastAPI', 'Chroma', 'sentence-transformers', 'Groq (Llama 3.1)', 'Docker', 'Render'],
+    process: 'Built the fast path first: embed and index paper chunks in Chroma, retrieve top-k on a query, and generate a cited answer in one LLM call via Groq. Layered an agentic pipeline on top for harder questions — decompose the question into sub-questions, retrieve separately for each, then run a critic/verifier pass that checks the drafted answer against its cited sources before returning it. Wrote a conservative junk-filter to catch noisy PDF-extracted chunks (reference lists, tables, title-page headers) that were diluting retrieval relevance. Production-hardened the service with input validation, structured logging, retry with exponential backoff on the LLM calls, a custom per-IP rate limiter, and 16 unit tests, then containerized it with Docker and deployed it live on Render.',
+    insights: 'The junk-filter step made a measurable difference to retrieval relevance — a large share of what gets extracted from academic PDFs is reference lists, running headers, and table fragments that look like plausible text but carry no real signal, and filtering them out before embedding gave cleaner, more relevant retrieval hits. The critic/verifier pass on the agentic path also catches answers that drift from what the sources actually support, not just answers that are stylistically off.',
+    output: 'A live, containerized FastAPI service on Render exposing both a fast single-shot RAG endpoint and an agentic decompose-retrieve-verify pipeline, with cited, source-grounded answers over the arXiv corpus, validated inputs, structured logs, backoff-protected retries, per-IP rate limiting, and a 16-test suite.',
+    learned: 'End-to-end RAG and agent system design — not just "call an LLM with retrieved context" but decomposing questions, retrieving per sub-question, and verifying answers against sources. Practical LLM-app production engineering: what actually breaks in the wild (noisy PDF chunks, unbounded retries, unthrottled traffic) and how input validation, structured logging, retry/backoff, and rate limiting address each of those failure modes.',
+  },
   'retail-sales': {
     id: 'retail-sales',
     tag: 'Excel',
