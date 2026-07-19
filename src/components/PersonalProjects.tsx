@@ -29,6 +29,8 @@ export function PersonalProjects({ onOpenCaseStudy }: { onOpenCaseStudy: (id: st
                 <img
                   src={asset(project.image)}
                   alt={`${project.title} demo`}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
                 />
               ) : (

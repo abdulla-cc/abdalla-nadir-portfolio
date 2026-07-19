@@ -2,6 +2,7 @@ import { Code2, Mail, MapPin, Network } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Reveal } from './Reveal'
 import { Eyebrow } from './Eyebrow'
+import { ContactForm } from './ContactForm'
 
 interface ContactItem {
   icon: LucideIcon
@@ -76,6 +77,10 @@ export function Contact() {
                 </div>
               )
             })}
+          </div>
+          <div className="mt-8">
+            <h3 className="mb-3 font-display text-lg font-bold">Or drop me a message right here</h3>
+            <ContactForm />
           </div>
         </Reveal>
 

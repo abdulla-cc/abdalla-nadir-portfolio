@@ -16,7 +16,7 @@ export function CtaBanner() {
             your data into a real advantage.
           </p>
           <a
-            href="mailto:abdullah130306@gmail.com"
+            href="#contact"
             className="inline-flex items-center gap-2 rounded-xl bg-[#f2ca50] px-[22px] py-[13px] text-sm font-bold text-[#0e0804] transition-all hover:-translate-y-0.5 hover:bg-[#d4af37] hover:shadow-[0_12px_28px_rgba(242,202,80,0.25)]"
           >
             Start a conversation <ArrowRight size={18} />
