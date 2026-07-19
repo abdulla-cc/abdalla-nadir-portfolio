@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 import {
-  Activity, FlaskConical, GraduationCap, Package, Smile, Store, Workflow,
+  Activity, Bot, FlaskConical, GraduationCap, Package, Smile, Store, Workflow,
 } from 'lucide-react'
 
 export interface ProjectLink {
@@ -25,6 +25,20 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: 'research-agent',
+    tag: 'Featured · Jul 2026',
+    title: 'Research Agent — Agentic RAG System over arXiv Papers',
+    description: 'An end-to-end retrieval-augmented generation (RAG) system that answers questions about a corpus of arXiv papers, returning cited answers grounded in the source papers. Offers two pipelines: a fast single-shot RAG endpoint, and an agentic pipeline that decomposes complex questions into sub-questions, retrieves per sub-question, and runs a critic/verifier pass to check the generated answer against its sources. Built a conservative junk-filter to clean noisy PDF-extracted chunks (reference lists, tables, title-page headers), improving retrieval relevance measurably. Production-hardened with input validation, structured logging, retry with exponential backoff, a custom per-IP rate limiter, and 16 unit tests. Containerized with Docker and deployed live on Render.',
+    placeholderIcon: Bot,
+    featured: true,
+    status: 'Live · Deployed on Render',
+    tech: ['Python', 'FastAPI', 'Chroma', 'sentence-transformers', 'Groq (Llama 3.1)', 'Docker', 'Render', 'RAG', 'LLM Agents'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/abdulla-cc/research-agent-rag', icon: 'github' },
+    ],
+    caseStudyId: 'research-agent',
+  },
   {
     id: 'scoms',
     tag: 'Featured · Final Year Project',
