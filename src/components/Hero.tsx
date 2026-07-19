@@ -68,7 +68,7 @@ export function Hero() {
         <Reveal delay={0.1} className="relative z-1 flex items-center justify-center">
           <div className="h-60 w-60 rounded-full border-4 border-gold bg-bg p-2.5 shadow-theme md:h-[340px] md:w-[340px]">
             <img
-              src={asset('profile.jpeg')}
+              src={asset('profile.webp')}
               alt="Abdalla Nadir"
               className="h-full w-full rounded-full bg-surface-2 object-cover"
             />

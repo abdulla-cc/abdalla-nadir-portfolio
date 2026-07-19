@@ -49,6 +49,8 @@ function ProjectImage({ project, featured }: { project: Project; featured?: bool
         <img
           src={asset(project.image)}
           alt={`${project.title} screenshot`}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
         />
       ) : (
