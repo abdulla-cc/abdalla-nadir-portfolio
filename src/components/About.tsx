@@ -38,14 +38,16 @@ export function About() {
             Analytical mind, builder's hands.
           </h2>
           <p className="mb-4 text-base text-dim">
-            Final-year Computer Science (AI) student at Multimedia University, Melaka. My focus sits
-            at the intersection of data analytics and business intelligence — I build dashboards and
-            data pipelines that give organisations a clear picture of what's inside their numbers.
+            I'm a final-year Computer Science (AI) student at Multimedia University, Melaka,
+            passionate about machine learning, software engineering, data analysis, and AI
+            engineering. I enjoy taking ideas from raw data and model experiments through APIs,
+            usable interfaces, testing, and deployment.
           </p>
           <p className="mb-4 text-base text-dim">
             With a 3.4 GPA, Dean's List recognition, and certifications from Microsoft, Google,
-            Cisco, and Huawei, I'm ready to bring real value to a data team from day one. Currently
-            seeking a Data Analyst or BI internship.
+            Cisco, and Huawei, I'm ready to contribute to a technical team from day one. I'm
+            currently seeking internship opportunities in software engineering, ML/AI engineering,
+            data analysis, or business intelligence.
           </p>
           <div className="mt-7 grid gap-4 sm:grid-cols-2">
             {achievements.map(({ icon: Icon, title, description }) => (

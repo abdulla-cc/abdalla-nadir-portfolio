@@ -1,14 +1,15 @@
 import type { LucideIcon } from 'lucide-react'
 import {
-  BarChart3, Database, FlaskConical, LineChart, Rocket, Trophy, Users, GraduationCap,
+  BarChart3, Code2, FlaskConical, LineChart, Rocket, Trophy, Users, GraduationCap,
 } from 'lucide-react'
 
 export const skillTags = [
   'Power BI', 'Python', 'SQL', 'Excel', 'DAX', 'Pandas', 'SQLite',
-  'Machine Learning', 'ETL Pipelines', 'openpyxl', 'Google Analytics', 'Git',
+  'Machine Learning', 'AI Engineering', 'React', 'FastAPI', 'REST APIs',
+  'Docker', 'ETL Pipelines', 'openpyxl', 'Google Analytics', 'Git',
 ]
 
-export const learningNow = ['Python (advanced)', 'UI / UX', 'Machine Learning']
+export const learningNow = ['Advanced Python', 'Full-stack engineering', 'Applied ML systems']
 
 export interface SkillCard {
   icon: LucideIcon
@@ -17,10 +18,10 @@ export interface SkillCard {
 }
 
 export const skillCards: SkillCard[] = [
-  { icon: BarChart3, title: 'Data & BI', description: 'Power BI dashboards, DAX measures, KPI tracking, and interactive Excel reports.' },
-  { icon: Database, title: 'Python & SQL', description: 'End-to-end pipelines using Pandas, SQLite, openpyxl — with CTEs, window functions, and views.' },
-  { icon: FlaskConical, title: 'AI & ML', description: 'Machine learning fundamentals, deep learning, feature engineering, and prompt engineering.' },
-  { icon: Rocket, title: 'Deploy & Report', description: 'Cisco CCNA, Google Analytics, GitHub workflows, and automated reports with openpyxl.' },
+  { icon: BarChart3, title: 'Data & BI', description: 'Power BI dashboards, DAX measures, SQL analysis, KPI tracking, and interactive Excel reports.' },
+  { icon: Code2, title: 'Software Engineering', description: 'Full-stack products using React, TypeScript, FastAPI, REST APIs, SQLModel, and secure authentication.' },
+  { icon: FlaskConical, title: 'ML & AI Engineering', description: 'Applied machine learning, deep learning, RAG systems, LLM integration, feature engineering, and evaluation.' },
+  { icon: Rocket, title: 'Deploy & Production', description: 'Docker, automated tests, GitHub workflows, cloud deployment, and production-minded error handling.' },
 ]
 
 export interface Achievement {
@@ -31,7 +32,7 @@ export interface Achievement {
 
 export const achievements: Achievement[] = [
   { icon: Trophy, title: "Dean's List", description: 'Recognised for academic performance at Multimedia University.' },
-  { icon: LineChart, title: '7 Projects', description: 'Analytics, ML & NLP work across Excel, Power BI, SQL, Python, XGBoost & Transformers — plus an AI Final Year Project.' },
+  { icon: LineChart, title: '8 Projects', description: 'Full-stack software, analytics, ML, NLP, and AI engineering work — from dashboards to deployed applications.' },
   { icon: GraduationCap, title: 'AI Specialisation', description: 'Coursework in machine learning, deep learning, and applied AI.' },
   { icon: Users, title: 'Arabic Culture Society', description: 'High Committee — leading events and cross-campus collaboration.' },
 ]

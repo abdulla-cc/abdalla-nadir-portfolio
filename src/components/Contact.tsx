@@ -34,8 +34,8 @@ const eduItems = [
   {
     date: 'SELF-DIRECTED',
     title: 'Applied Projects',
-    org: 'End-to-end analytics & BI work',
-    note: 'Excel, Power BI, SQL, and Python pipelines on real datasets.',
+    org: 'End-to-end software, AI & data work',
+    note: 'React, FastAPI, Python, SQL, machine learning, Power BI, testing, and cloud deployment.',
   },
 ]
 

@@ -1,6 +1,6 @@
 # Abdalla Nadir — Portfolio
 
-Personal portfolio of Abdalla Nadir, Data Analyst & AI student at Multimedia University, Melaka.
+Personal portfolio of Abdalla Nadir, a Computer Science (AI) student passionate about machine learning, software engineering, data analysis, and AI engineering.
 
 **Live site:** https://abdulla-cc.github.io/abdalla-nadir-portfolio/
 

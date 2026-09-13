@@ -6,7 +6,7 @@ import { asset } from '../lib/asset'
 
 const stats = [
   { n: '3.4', label: 'GPA / 4.0' },
-  { n: '7', label: 'Projects' },
+  { n: '8', label: 'Projects' },
   { n: '6', label: 'Certifications' },
 ]
 
@@ -29,13 +29,13 @@ export function Hero() {
       <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-6 md:px-8 lg:grid-cols-[1.25fr_0.9fr] lg:gap-16 lg:px-12">
         <Reveal className="relative z-1 flex flex-col items-center text-center lg:items-start lg:text-left">
           <h1 className="mb-6 text-4xl font-extrabold leading-[1.05] text-balance md:text-5xl lg:text-[clamp(40px,6vw,60px)]">
-            Turning data into <span className="text-gold">insights</span> &amp; smarter{' '}
-            <span className="text-gold">decisions</span>.
+            Building <span className="text-gold">intelligent software</span> from data, models &amp;{' '}
+            <span className="text-gold">real-world problems</span>.
           </h1>
           <p className="mb-9 max-w-[520px] text-lg leading-[1.7] text-dim">
-            I'm a Data Analyst &amp; AI student at Multimedia University, Melaka, building dashboards
-            and pipelines that turn raw data into clear, actionable stories — with Power BI, Python,
-            and SQL.
+            I'm a final-year Computer Science (AI) student at Multimedia University, passionate about
+            machine learning, software engineering, data analysis, and AI engineering. I build
+            end-to-end products with Python, React, FastAPI, SQL, and modern ML tools.
           </p>
           <div className="mb-11 flex flex-wrap justify-center gap-3.5 lg:justify-start">
             <a

@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 import {
-  Activity, Bot, FlaskConical, GraduationCap, Package, Smile, Store, Workflow,
+  Activity, Bot, BriefcaseBusiness, FlaskConical, GraduationCap, Package, Smile, Store, Workflow,
 } from 'lucide-react'
 
 export interface ProjectLink {
@@ -38,6 +38,22 @@ export const projects: Project[] = [
       { label: 'GitHub', href: 'https://github.com/abdulla-cc/research-agent-rag', icon: 'github' },
     ],
     caseStudyId: 'research-agent',
+  },
+  {
+    id: 'job-tracker',
+    tag: 'Featured · Full Stack · Sep 2026',
+    title: 'JobTracker — AI-Powered Job Application Platform',
+    description: 'A production-deployed platform combining a four-stage job-application pipeline with AI job-description analysis and CV tailoring. Includes secure accounts, user-scoped data, a structured CV workspace, and 53 backend tests across the full workflow.',
+    image: 'job-tracker-login.png',
+    placeholderIcon: BriefcaseBusiness,
+    featured: true,
+    status: 'Live · Deployed on Render',
+    tech: ['React 19', 'FastAPI', 'SQLModel', 'PostgreSQL', 'JWT + Argon2', 'Groq API', 'GPT-OSS 20B', 'Docker', 'Render'],
+    links: [
+      { label: 'Live App', href: 'https://job-tracker-web-ckxo.onrender.com/', icon: 'launch', primary: true },
+      { label: 'GitHub', href: 'https://github.com/abdulla-cc/job-tracker', icon: 'github' },
+    ],
+    caseStudyId: 'job-tracker',
   },
   {
     id: 'scoms',

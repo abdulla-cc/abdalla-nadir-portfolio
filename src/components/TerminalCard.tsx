@@ -7,17 +7,17 @@ interface TermLine {
 }
 
 const LINES: TermLine[] = [
-  { cmd: 'whoami', out: ['Abdalla Nadir — Data Analyst & AI student'] },
+  { cmd: 'whoami', out: ['Abdalla Nadir — AI, software & data builder'] },
   {
     cmd: 'cat status.txt',
     out: [
       '🎓 B.CS (AI) @ MMU · GPA 3.4 · Dean’s List',
       '📍 Melaka, Malaysia',
-      '🟡 open to Data Analyst / BI internships',
+      '🟡 open to software, ML/AI & data internships',
     ],
   },
-  { cmd: 'ls skills/', out: ['power-bi/  python/  sql/  excel/', 'dax/  pandas/  machine-learning/'] },
-  { cmd: 'echo $CURRENTLY_LEARNING', out: ['advanced python · ui/ux · ml'] },
+  { cmd: 'ls skills/', out: ['python/  react/  fastapi/  sql/', 'machine-learning/  power-bi/  docker/'] },
+  { cmd: 'echo $CURRENTLY_LEARNING', out: ['full-stack systems · applied ml · ai engineering'] },
 ]
 
 const PROMPT = 'abdalla@portfolio:~$'
