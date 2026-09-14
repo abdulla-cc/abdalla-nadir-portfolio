@@ -7,7 +7,7 @@ import { asset } from '../lib/asset'
 const stats = [
   { n: '3.4', label: 'GPA / 4.0' },
   { n: '11', label: 'Projects' },
-  { n: '6', label: 'Certifications' },
+  { n: '12', label: 'Certifications' },
 ]
 
 export function Hero() {
