@@ -6,7 +6,7 @@ import { asset } from '../lib/asset'
 
 const stats = [
   { n: '3.4', label: 'GPA / 4.0' },
-  { n: '10', label: 'Projects' },
+  { n: '11', label: 'Projects' },
   { n: '6', label: 'Certifications' },
 ]
 

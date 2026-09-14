@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 import {
-  Activity, Bot, BriefcaseBusiness, FlaskConical, GraduationCap, Package, PiggyBank, Smile, Store, Workflow,
+  Activity, Bot, BriefcaseBusiness, FlaskConical, GraduationCap, Package, PiggyBank, Scale, Smile, Store, Workflow,
 } from 'lucide-react'
 
 export interface ProjectLink {
@@ -67,6 +67,20 @@ export const projects: Project[] = [
       { label: 'GitHub', href: 'https://github.com/abdulla-cc/Budget_Tracker', icon: 'github' },
     ],
     caseStudyId: 'budget-tracker',
+  },
+  {
+    id: 'decision-os',
+    tag: 'AI Engineering · Full Stack · Sep 2026',
+    title: 'DecisionOS — Evidence-Based AI Decision Support',
+    description: 'A full-stack system for comparing 2–4 options without asking an LLM to invent certainty. Its six-stage pipeline combines qualitative AI reasoning and optional web research with deterministic, evidence-adjusted scoring to produce auditable probability estimates, confidence, counterarguments, what-if analysis, and outcome tracking. Includes React web and Expo mobile clients, a FastAPI API, async SQLAlchemy storage, and 168 passing tests.',
+    placeholderIcon: Scale,
+    featured: true,
+    status: 'Open Source · Local Application',
+    tech: ['Python', 'FastAPI', 'React 19', 'Expo', 'TypeScript', 'SQLAlchemy', 'Groq / OpenAI', 'Tavily', 'Docker', 'pytest'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/abdulla-cc/Decision_OS', icon: 'github' },
+    ],
+    caseStudyId: 'decision-os',
   },
   {
     id: 'scoms',

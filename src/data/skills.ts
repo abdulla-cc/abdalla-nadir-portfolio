@@ -32,7 +32,7 @@ export interface Achievement {
 
 export const achievements: Achievement[] = [
   { icon: Trophy, title: "Dean's List", description: 'Recognised for academic performance at Multimedia University.' },
-  { icon: LineChart, title: '10 Projects', description: 'Full-stack software, offline-first apps, analytics, ML, NLP, and AI engineering — from dashboards to deployed products.' },
+  { icon: LineChart, title: '11 Projects', description: 'Full-stack software, offline-first apps, analytics, ML, NLP, and AI engineering — from dashboards to deployed products.' },
   { icon: GraduationCap, title: 'AI Specialisation', description: 'Coursework in machine learning, deep learning, and applied AI.' },
   { icon: Users, title: 'Arabic Culture Society', description: 'High Committee — leading events and cross-campus collaboration.' },
 ]
