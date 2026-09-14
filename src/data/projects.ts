@@ -61,6 +61,7 @@ export const projects: Project[] = [
     title: 'Budget Tracker — Offline-First Personal Finance PWA',
     description: 'An installable mobile-first budgeting app for monthly allowances, category budgets, expenses, and savings. It keeps data private in IndexedDB and derives remaining balances, over-budget warnings, and a safe-to-spend-today figure directly from the transaction history.',
     placeholderIcon: PiggyBank,
+    featured: true,
     tech: ['React 19', 'TypeScript', 'Dexie.js', 'IndexedDB', 'Tailwind CSS', 'PWA'],
     links: [
       { label: 'GitHub', href: 'https://github.com/abdulla-cc/Budget_Tracker', icon: 'github' },
