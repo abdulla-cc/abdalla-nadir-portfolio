@@ -264,14 +264,13 @@ const useShaderBackground = () => {
       renderer.updateShader(defaultShaderSource)
     }
 
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const loop = (now: number) => {
       renderer.updateMouse(pointers.first)
       renderer.updatePointerCount(pointers.count)
       renderer.updatePointerCoords(pointers.coords)
       renderer.updateMove(pointers.move)
       renderer.render(now)
-      if (!reducedMotion) animationFrame = requestAnimationFrame(loop)
+      animationFrame = requestAnimationFrame(loop)
     }
     animationFrame = requestAnimationFrame(loop)
 
