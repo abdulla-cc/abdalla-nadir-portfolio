@@ -93,7 +93,7 @@ function ProjectCard({ project, onOpenCaseStudy }: { project: Project; onOpenCas
               ))}
             </div>
           )}
-          <div className="mt-2 flex gap-4.5 border-t border-line-soft pt-4">
+          <div className="mt-2 flex flex-wrap gap-4.5 border-t border-line-soft pt-4">
             {project.links.map(link => (
               <ProjectLinkItem key={link.href} link={link} />
             ))}

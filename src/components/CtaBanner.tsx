@@ -12,8 +12,8 @@ export function CtaBanner() {
             Let's build something intelligent and useful together.
           </h2>
           <p className="mx-auto mb-8 max-w-[560px] text-[17px] text-[#c9b99b]">
-            I'm actively seeking internship opportunities across software engineering, ML/AI
-            engineering, data analytics, and business intelligence.
+            I'm seeking graduate software engineering and applied AI opportunities,
+            with hands-on experience building web applications and working with data and ML.
           </p>
           <a
             href="#contact"

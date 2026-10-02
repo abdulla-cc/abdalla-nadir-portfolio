@@ -24,9 +24,7 @@ interface HeroProps {
   className?: string
 }
 
-type Vec2 = [number, number]
-
-// WebGL Renderer class
+// Keep GPU resources scoped to this canvas, including failed setup and context recovery.
 class WebGLRenderer {
   private canvas: HTMLCanvasElement
   private gl: WebGL2RenderingContext
@@ -34,251 +32,190 @@ class WebGLRenderer {
   private vs: WebGLShader | null = null
   private fs: WebGLShader | null = null
   private buffer: WebGLBuffer | null = null
-  private shaderSource: string
-  private mouseMove: Vec2 = [0, 0]
-  private mouseCoords: Vec2 = [0, 0]
-  private pointerCoords: number[] = [0, 0]
-  private nbrOfPointers = 0
-  private uniforms: Record<string, WebGLUniformLocation | null> = {}
+  private resolution: WebGLUniformLocation | null = null
+  private time: WebGLUniformLocation | null = null
 
-  private vertexSrc = `#version 300 es
-precision highp float;
-in vec4 position;
-void main(){gl_Position=position;}`
-
-  private vertices = [-1, 1, -1, -1, 1, 1, 1, -1]
-
-  constructor(canvas: HTMLCanvasElement, gl: WebGL2RenderingContext, scale: number) {
+  constructor(canvas: HTMLCanvasElement, gl: WebGL2RenderingContext) {
     this.canvas = canvas
     this.gl = gl
-    this.gl.viewport(0, 0, canvas.width * scale, canvas.height * scale)
-    this.shaderSource = defaultShaderSource
   }
 
-  updateShader(source: string) {
-    this.reset()
-    this.shaderSource = source
-    this.setup()
-    this.init()
-  }
-
-  updateMove(deltas: Vec2) {
-    this.mouseMove = deltas
-  }
-
-  updateMouse(coords: Vec2) {
-    this.mouseCoords = coords
-  }
-
-  updatePointerCoords(coords: number[]) {
-    this.pointerCoords = coords
-  }
-
-  updatePointerCount(nbr: number) {
-    this.nbrOfPointers = nbr
-  }
-
-  updateScale(scale: number) {
-    this.gl.viewport(0, 0, this.canvas.width * scale, this.canvas.height * scale)
-  }
-
-  compile(shader: WebGLShader, source: string) {
+  private compile(type: number, source: string) {
     const gl = this.gl
+    const shader = gl.createShader(type)
+    if (!shader) return null
     gl.shaderSource(shader, source)
     gl.compileShader(shader)
-
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      console.error('Shader compilation error:', gl.getShaderInfoLog(shader))
+      console.warn('Shader background unavailable:', gl.getShaderInfoLog(shader))
+      gl.deleteShader(shader)
+      return null
     }
-  }
-
-  test(source: string) {
-    let result = null
-    const gl = this.gl
-    const shader = gl.createShader(gl.FRAGMENT_SHADER)!
-    gl.shaderSource(shader, source)
-    gl.compileShader(shader)
-
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      result = gl.getShaderInfoLog(shader)
-    }
-    gl.deleteShader(shader)
-    return result
-  }
-
-  reset() {
-    const gl = this.gl
-    if (this.program && !gl.getProgramParameter(this.program, gl.DELETE_STATUS)) {
-      if (this.vs) {
-        gl.detachShader(this.program, this.vs)
-        gl.deleteShader(this.vs)
-      }
-      if (this.fs) {
-        gl.detachShader(this.program, this.fs)
-        gl.deleteShader(this.fs)
-      }
-      gl.deleteProgram(this.program)
-    }
-  }
-
-  setup() {
-    const gl = this.gl
-    this.vs = gl.createShader(gl.VERTEX_SHADER)!
-    this.fs = gl.createShader(gl.FRAGMENT_SHADER)!
-    this.compile(this.vs, this.vertexSrc)
-    this.compile(this.fs, this.shaderSource)
-    this.program = gl.createProgram()!
-    gl.attachShader(this.program, this.vs)
-    gl.attachShader(this.program, this.fs)
-    gl.linkProgram(this.program)
-
-    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      console.error(gl.getProgramInfoLog(this.program))
-    }
+    return shader
   }
 
   init() {
     const gl = this.gl
-    const program = this.program!
+    this.reset()
+    this.vs = this.compile(gl.VERTEX_SHADER, `#version 300 es
+in vec4 position;
+void main() { gl_Position = position; }`)
+    this.fs = this.compile(gl.FRAGMENT_SHADER, defaultShaderSource)
+    this.program = gl.createProgram()
+    if (!this.vs || !this.fs || !this.program) {
+      this.reset()
+      return false
+    }
+    gl.attachShader(this.program, this.vs)
+    gl.attachShader(this.program, this.fs)
+    gl.linkProgram(this.program)
+    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+      console.warn('Shader background unavailable:', gl.getProgramInfoLog(this.program))
+      this.reset()
+      return false
+    }
 
     this.buffer = gl.createBuffer()
+    if (!this.buffer) {
+      this.reset()
+      return false
+    }
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer)
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vertices), gl.STATIC_DRAW)
-
-    const position = gl.getAttribLocation(program, 'position')
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, 1, -1, -1, 1, 1, 1, -1]), gl.STATIC_DRAW)
+    const position = gl.getAttribLocation(this.program, 'position')
     gl.enableVertexAttribArray(position)
     gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0)
-
-    for (const name of ['resolution', 'time', 'move', 'touch', 'pointerCount', 'pointers']) {
-      this.uniforms[name] = gl.getUniformLocation(program, name)
-    }
+    this.resolution = gl.getUniformLocation(this.program, 'resolution')
+    this.time = gl.getUniformLocation(this.program, 'time')
+    return true
   }
 
-  render(now = 0) {
+  resize() {
+    // Canvas dimensions already include the rendering scale; do not apply DPR twice.
+    this.gl.viewport(0, 0, this.canvas.width, this.canvas.height)
+  }
+
+  render(elapsed: number) {
+    if (!this.program) return
     const gl = this.gl
-    const program = this.program
-
-    if (!program || gl.getProgramParameter(program, gl.DELETE_STATUS)) return
-
-    gl.clearColor(0, 0, 0, 1)
-    gl.clear(gl.COLOR_BUFFER_BIT)
-    gl.useProgram(program)
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer)
-
-    gl.uniform2f(this.uniforms.resolution, this.canvas.width, this.canvas.height)
-    gl.uniform1f(this.uniforms.time, now * 1e-3)
-    gl.uniform2f(this.uniforms.move, this.mouseMove[0], this.mouseMove[1])
-    gl.uniform2f(this.uniforms.touch, this.mouseCoords[0], this.mouseCoords[1])
-    gl.uniform1i(this.uniforms.pointerCount, this.nbrOfPointers)
-    gl.uniform2fv(this.uniforms.pointers, this.pointerCoords)
+    gl.useProgram(this.program)
+    gl.uniform2f(this.resolution, this.canvas.width, this.canvas.height)
+    gl.uniform1f(this.time, elapsed * 1e-3)
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
   }
-}
 
-// Pointer Handler class
-class PointerHandler {
-  private scale: number
-  private active = false
-  private pointers = new Map<number, Vec2>()
-  private lastCoords: Vec2 = [0, 0]
-  private moves: Vec2 = [0, 0]
-
-  constructor(element: HTMLCanvasElement, scale: number) {
-    this.scale = scale
-
-    const map = (el: HTMLCanvasElement, s: number, x: number, y: number): Vec2 => [
-      x * s,
-      el.height - y * s,
-    ]
-
-    element.addEventListener('pointerdown', e => {
-      this.active = true
-      this.pointers.set(e.pointerId, map(element, this.scale, e.clientX, e.clientY))
-    })
-
-    const release = (e: PointerEvent) => {
-      if (this.count === 1) this.lastCoords = this.first
-      this.pointers.delete(e.pointerId)
-      this.active = this.pointers.size > 0
-    }
-    element.addEventListener('pointerup', release)
-    element.addEventListener('pointerleave', release)
-
-    element.addEventListener('pointermove', e => {
-      if (!this.active) return
-      this.lastCoords = [e.clientX, e.clientY]
-      this.pointers.set(e.pointerId, map(element, this.scale, e.clientX, e.clientY))
-      this.moves = [this.moves[0] + e.movementX, this.moves[1] + e.movementY]
-    })
-  }
-
-  updateScale(scale: number) {
-    this.scale = scale
-  }
-
-  get count() {
-    return this.pointers.size
-  }
-
-  get move(): Vec2 {
-    return this.moves
-  }
-
-  get coords(): number[] {
-    return this.pointers.size > 0 ? Array.from(this.pointers.values()).flat() : [0, 0]
-  }
-
-  get first(): Vec2 {
-    return this.pointers.values().next().value ?? this.lastCoords
+  reset() {
+    const gl = this.gl
+    if (this.buffer) gl.deleteBuffer(this.buffer)
+    if (this.program) gl.deleteProgram(this.program)
+    if (this.vs) gl.deleteShader(this.vs)
+    if (this.fs) gl.deleteShader(this.fs)
+    this.buffer = null
+    this.program = null
+    this.vs = null
+    this.fs = null
+    this.resolution = null
+    this.time = null
   }
 }
 
-// Reusable Shader Background Hook
 const useShaderBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const gl = canvas.getContext('webgl2')
-    if (!gl) return // WebGL2 unsupported — leave the plain background
+    const gl = canvas.getContext('webgl2', { antialias: false, depth: false })
+    if (!gl) return // Keep the existing CSS background when WebGL2 is unavailable.
 
+    const renderer = new WebGLRenderer(canvas, gl)
+    if (!renderer.init()) return
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let reducedMotion = motionPreference.matches
+    let inView = typeof IntersectionObserver === 'undefined'
+    let contextLost = false
     let animationFrame = 0
-    const dpr = Math.max(1, 0.5 * window.devicePixelRatio)
-    const renderer = new WebGLRenderer(canvas, gl, dpr)
-    const pointers = new PointerHandler(canvas, dpr)
+    let previousTime: number | null = null
+    let elapsed = 0
 
-    renderer.setup()
-    renderer.init()
-
-    const resize = () => {
-      const scale = Math.max(1, 0.5 * window.devicePixelRatio)
-      canvas.width = window.innerWidth * scale
-      canvas.height = window.innerHeight * scale
-      renderer.updateScale(scale)
-      pointers.updateScale(scale)
+    const stop = () => {
+      cancelAnimationFrame(animationFrame)
+      animationFrame = 0
+      previousTime = null
     }
-    resize()
-
-    if (renderer.test(defaultShaderSource) === null) {
-      renderer.updateShader(defaultShaderSource)
-    }
-
     const loop = (now: number) => {
-      renderer.updateMouse(pointers.first)
-      renderer.updatePointerCount(pointers.count)
-      renderer.updatePointerCoords(pointers.coords)
-      renderer.updateMove(pointers.move)
-      renderer.render(now)
+      if (previousTime !== null) elapsed += now - previousTime
+      previousTime = now
+      renderer.render(elapsed)
       animationFrame = requestAnimationFrame(loop)
     }
-    animationFrame = requestAnimationFrame(loop)
+    const syncAnimation = () => {
+      stop()
+      if (contextLost) return
+      if (reducedMotion) {
+        renderer.render(elapsed) // Preserve the artwork as a still frame.
+      } else if (inView && !document.hidden) {
+        animationFrame = requestAnimationFrame(loop)
+      }
+    }
+    const resize = () => {
+      const { width, height } = canvas.getBoundingClientRect()
+      // This decorative shader renders below full retina resolution to bound GPU work.
+      const scale = Math.min(2, Math.max(1, window.devicePixelRatio * 0.5))
+      const pixelWidth = Math.max(1, Math.round(width * scale))
+      const pixelHeight = Math.max(1, Math.round(height * scale))
+      if (canvas.width !== pixelWidth || canvas.height !== pixelHeight) {
+        canvas.width = pixelWidth
+        canvas.height = pixelHeight
+      }
+      if (!contextLost) {
+        renderer.resize()
+        renderer.render(elapsed)
+      }
+    }
+    const onMotionChange = (event: MediaQueryListEvent) => {
+      reducedMotion = event.matches
+      syncAnimation()
+    }
+    const onContextLost = (event: Event) => {
+      event.preventDefault()
+      contextLost = true
+      stop()
+      renderer.reset()
+    }
+    const onContextRestored = () => {
+      contextLost = !renderer.init()
+      if (contextLost) return
+      resize()
+      syncAnimation()
+    }
 
+    const intersectionObserver = typeof IntersectionObserver !== 'undefined'
+      ? new IntersectionObserver(([entry]) => {
+          inView = entry.isIntersecting
+          syncAnimation()
+        })
+      : null
+    const resizeObserver = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(resize) : null
+    intersectionObserver?.observe(canvas)
+    resizeObserver?.observe(canvas)
+    motionPreference.addEventListener('change', onMotionChange)
+    document.addEventListener('visibilitychange', syncAnimation)
+    canvas.addEventListener('webglcontextlost', onContextLost)
+    canvas.addEventListener('webglcontextrestored', onContextRestored)
     window.addEventListener('resize', resize)
+    resize()
+    syncAnimation()
 
     return () => {
+      stop()
+      intersectionObserver?.disconnect()
+      resizeObserver?.disconnect()
+      motionPreference.removeEventListener('change', onMotionChange)
+      document.removeEventListener('visibilitychange', syncAnimation)
+      canvas.removeEventListener('webglcontextlost', onContextLost)
+      canvas.removeEventListener('webglcontextrestored', onContextRestored)
       window.removeEventListener('resize', resize)
-      cancelAnimationFrame(animationFrame)
       renderer.reset()
     }
   }, [])
@@ -324,6 +261,7 @@ const Hero: React.FC<HeroProps> = ({ trustBadge, headline, subtitle, buttons, cl
         ref={canvasRef}
         className="absolute inset-0 h-full w-full touch-none object-contain"
         style={{ background: 'black' }}
+        aria-hidden="true"
       />
 
       {/* Hero Content Overlay */}

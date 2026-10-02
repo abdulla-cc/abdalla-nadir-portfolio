@@ -3,8 +3,7 @@ import { Eyebrow } from './Eyebrow'
 import { certifications, type Certification } from '../data/certifications'
 
 const badgeStyles: Record<Certification['badge'], string> = {
-  Verified: 'bg-surface-2 text-gold',
-  Mastery: 'bg-gold text-on-gold',
+  Completed: 'bg-surface-2 text-gold',
   'In Progress': 'bg-surface-2 text-dim',
 }
 
@@ -14,7 +13,7 @@ export function Certifications() {
       <div className="mx-auto max-w-[1200px] px-6 md:px-8 lg:px-12">
         <Reveal className="mb-14 text-center">
           <Eyebrow>Credentials</Eyebrow>
-          <h2 className="text-[32px] font-extrabold leading-[1.12] lg:text-[40px]">Certifications</h2>
+          <h2 className="text-[32px] font-extrabold leading-[1.12] lg:text-[40px]">Certifications &amp; Courses</h2>
         </Reveal>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, i) => (
@@ -28,7 +27,7 @@ export function Certifications() {
                   <cert.icon size={28} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h4 className="mb-1 font-display text-[15.5px] font-bold leading-[1.3]">{cert.title}</h4>
+                  <h3 className="mb-1 font-display text-[15.5px] font-bold leading-[1.3]">{cert.title}</h3>
                   <div className="mb-2.5 text-[13px] text-dim">{cert.issuer}</div>
                   <span
                     className={`inline-block rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.08em] ${badgeStyles[cert.badge]}`}

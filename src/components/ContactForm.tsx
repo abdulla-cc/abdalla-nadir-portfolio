@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CheckCircle2, Loader2, Send, TriangleAlert } from 'lucide-react'
 
 // FormSubmit delivers submissions to this inbox — no backend, no account.
@@ -12,15 +12,31 @@ const inputClass =
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle')
+  const request = useRef<AbortController | null>(null)
+  useEffect(() => () => request.current?.abort(), [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (request.current) return
     const form = e.currentTarget
     const data = Object.fromEntries(new FormData(form).entries())
+    for (const name of ['name', 'email', 'message']) {
+      data[name] = String(data[name] ?? '').trim()
+      if (!data[name]) {
+        const input = form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement
+        input.setCustomValidity('Please enter more than spaces.')
+        input.reportValidity()
+        return
+      }
+    }
+    const controller = new AbortController()
+    request.current = controller
+    const timeout = window.setTimeout(() => controller.abort(), 15_000)
     setStatus('sending')
     try {
       const res = await fetch(ENDPOINT, {
         method: 'POST',
+        signal: controller.signal,
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           ...data,
@@ -30,38 +46,50 @@ export function ContactForm() {
         }),
       })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const result: unknown = await res.json()
+      if (!result || typeof result !== 'object' || !('success' in result)
+        || (result.success !== true && result.success !== 'true')) {
+        throw new Error('The provider did not confirm acceptance')
+      }
       form.reset()
       setStatus('sent')
     } catch {
       setStatus('error')
+    } finally {
+      window.clearTimeout(timeout)
+      request.current = null
     }
   }
 
-  if (status === 'sent') {
-    return (
-      <div className="flex items-center gap-3 rounded-[14px] border border-line bg-card px-5 py-6">
-        <CheckCircle2 size={24} className="shrink-0 text-gold" />
-        <p className="text-[15px] text-text">
-          Message sent — thanks for reaching out! I'll get back to you soon.
-        </p>
-      </div>
-    )
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <form onSubmit={handleSubmit} aria-busy={status === 'sending'} className="flex flex-col gap-3"
+      onInput={event => {
+        if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+          event.target.setCustomValidity('')
+        }
+        if (status !== 'sending') setStatus('idle')
+      }}>
       <div className="grid gap-3 sm:grid-cols-2">
-        <input name="name" type="text" required placeholder="Your name" aria-label="Your name" className={inputClass} />
-        <input name="email" type="email" required placeholder="Your email" aria-label="Your email" className={inputClass} />
+        <label className="grid gap-1.5 text-sm text-text">Your name
+          <input name="name" type="text" required autoComplete="name" maxLength={100}
+            readOnly={status === 'sending'} className={inputClass} />
+        </label>
+        <label className="grid gap-1.5 text-sm text-text">Your email
+          <input name="email" type="email" required autoComplete="email" maxLength={254}
+            readOnly={status === 'sending'} className={inputClass} />
+        </label>
       </div>
+      <label className="grid gap-1.5 text-sm text-text">Message
       <textarea
         name="message"
         required
         rows={4}
         placeholder="What would you like to build together?"
-        aria-label="Message"
+        maxLength={5000}
+        readOnly={status === 'sending'}
         className={`${inputClass} resize-y`}
       />
+      </label>
       {/* honeypot for bots */}
       <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <div className="flex flex-wrap items-center gap-4">
@@ -81,12 +109,19 @@ export function ContactForm() {
           )}
         </button>
         {status === 'error' && (
-          <p className="inline-flex items-center gap-1.5 text-sm text-dim">
-            <TriangleAlert size={16} className="text-gold" />
-            Something went wrong — try again or email me directly.
+          <p role="alert" className="text-sm text-text">
+            <TriangleAlert size={16} className="mr-1.5 inline text-gold" aria-hidden="true" />
+            Submission could not be confirmed. Your message is still here. Try again or{' '}
+            <a href="mailto:abdullah130306@gmail.com" className="text-gold underline">email me directly</a>.
           </p>
         )}
       </div>
+      {status === 'sent' && (
+        <p role="status" className="flex items-center gap-2 rounded-xl border border-line bg-card p-4 text-sm text-text">
+          <CheckCircle2 size={20} className="shrink-0 text-gold" aria-hidden="true" />
+          Message accepted by the email service — thanks for reaching out!
+        </p>
+      )}
     </form>
   )
 }

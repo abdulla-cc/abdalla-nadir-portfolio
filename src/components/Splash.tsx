@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useReducedMotion } from '../lib/useReducedMotion'
 
 /** Loading splash — gold "AN" logo, fades out shortly after mount. */
 export function Splash() {
+  const reducedMotion = useReducedMotion()
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
@@ -12,11 +14,11 @@ export function Splash() {
 
   return (
     <AnimatePresence>
-      {visible && (
+      {visible && !reducedMotion && (
         <motion.div
           className="fixed inset-0 z-9999 flex items-center justify-center bg-bg"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: reducedMotion ? 0 : 0.4 }}
           aria-hidden="true"
         >
           <div className="animate-splash flex h-21 w-21 items-center justify-center rounded-full bg-gold font-display text-[28px] font-extrabold text-on-gold">

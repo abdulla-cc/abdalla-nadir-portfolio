@@ -18,10 +18,13 @@
       --gold-dark: #b8860b;
       --text-1: #fff8e7;
       --text-2: #a89060;
-      --text-3: #6b5a35;
+      --text-3: #b3a183;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    code { overflow-wrap: anywhere; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
     body {
       background: var(--bg);
       color: var(--text-1);
@@ -265,7 +268,7 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <main class="container">
 
     <!-- Back -->
     <a href="../index.html" class="back-link">
@@ -283,19 +286,19 @@
         <span class="meta-badge">👤 Solo — Built End-to-End</span>
       </div>
       <p class="project-desc">
-        Individually designed and implemented a fully normalised relational database system for managing job applications, interviews, applicants, and offer statuses — from ERD design all the way to SQL triggers, stored procedures, and custom functions.
+        An academic database project for managing applicants, jobs, interviews, documents, and offers. The downloadable snapshot contains five tables, sample records, foreign keys, and one status-change trigger.
       </p>
     </div>
 
     <!-- Stats -->
     <div class="stats-row">
       <div class="stat-box">
-        <span class="stat-num">6</span>
-        <span class="stat-label">Normalised Tables</span>
+        <span class="stat-num">5</span>
+        <span class="stat-label">Exported Tables</span>
       </div>
       <div class="stat-box">
-        <span class="stat-num">3NF</span>
-        <span class="stat-label">Normalisation Level</span>
+        <span class="stat-num">1</span>
+        <span class="stat-label">Exported Trigger</span>
       </div>
       <div class="stat-box">
         <span class="stat-num">Solo</span>
@@ -305,47 +308,24 @@
 
     <!-- Tools -->
     <div class="section">
-      <div class="section-title">Technologies Used</div>
+      <h2 class="section-title">Technologies Used</h2>
       <div class="tools-row">
         <span class="tool-tag">MySQL / MariaDB</span>
         <span class="tool-tag">SQL DDL & DML</span>
         <span class="tool-tag">ERD Design</span>
         <span class="tool-tag">Normalisation (1NF → 3NF)</span>
         <span class="tool-tag">Triggers</span>
-        <span class="tool-tag">Stored Procedures</span>
-        <span class="tool-tag">SQL Functions</span>
         <span class="tool-tag">Data Dictionary</span>
       </div>
     </div>
 
     <!-- What I Built -->
     <div class="section">
-      <div class="section-title">What I Built</div>
+      <h2 class="section-title">What the Download Contains</h2>
       <div class="highlights-list">
-        <div class="highlight-item">
-          <span class="highlight-icon">🗄️</span>
-          <span>Designed a full ERD and normalised the schema from 1NF through to 3NF, eliminating all partial and transitive dependencies across 6 tables: Applicant, Job, Interview, Interviewer, Documents, and Job Offer.</span>
-        </div>
-        <div class="highlight-item">
-          <span class="highlight-icon">⚡</span>
-          <span>Built an automatic trigger (<code>UpdateJobOfferStatusNotification</code>) that fires after any job offer status change and inserts a notification record into the Documents table for the relevant applicant.</span>
-        </div>
-        <div class="highlight-item">
-          <span class="highlight-icon">📦</span>
-          <span>Created stored procedures including <code>GetJobOffersForApplicant</code> and <code>GetJobsByLocation</code> to encapsulate common queries for HR teams.</span>
-        </div>
-        <div class="highlight-item">
-          <span class="highlight-icon">🔢</span>
-          <span>Implemented custom SQL functions — <code>CountJobOffersForJob</code> and <code>CalculateAverageSalary</code> — to support business analytics on hiring activity.</span>
-        </div>
-        <div class="highlight-item">
-          <span class="highlight-icon">📋</span>
-          <span>Wrote a full data dictionary covering all attribute names, data types, formats, and primary/foreign key relationships across every table.</span>
-        </div>
-        <div class="highlight-item">
-          <span class="highlight-icon">💼</span>
-          <span>Delivered a business analysis section covering real-world problem alignment, SWOT analysis, potential users, and implementation challenges.</span>
-        </div>
+        <div class="highlight-item"><span>Five exported tables: <code>applicant</code>, <code>job</code>, <code>interview</code>, <code>documents</code>, and <code>job_offer</code>, with primary keys, sample records, and foreign-key relationships.</span></div>
+        <div class="highlight-item"><span><code>UpdateJobOfferStatusNotification</code> adds a document when an offer status changes. Table references use the same lowercase names as the schema for case-sensitive servers.</span></div>
+        <div class="highlight-item"><span>The original report describes the broader design. This SQL snapshot does not include stored procedures, custom functions, or the interviewer table. <code>Interviewer_ID</code> is currently an unconstrained sample identifier.</span></div>
       </div>
     </div>
 
@@ -353,19 +333,23 @@
 
     <!-- Downloads -->
     <div class="section">
-      <div class="section-title">Project Files</div>
+      <h2 class="section-title">Project Files</h2>
+      <p>Import only into a new disposable database. Re-importing this dump replaces the five named tables and deletes their existing data.</p>
       <div class="download-grid" style="grid-template-columns: 1fr;">
         <a href="JobApplicationSystem.sql" download class="download-card">
           <div class="download-icon icon-sql">🗃️</div>
           <div class="download-info">
             <span class="download-name">SQL Source File</span>
-            <span class="download-sub">.sql · Full database dump with all tables & triggers</span>
+            <span class="download-sub">.sql · Five-table demo snapshot and one trigger</span>
           </div>
           <span class="download-arrow">→</span>
+        </a>
+        <a href="JobApplicationSystem_Report.pdf" class="download-card">
+          <div class="download-info"><span class="download-name">Original Academic Report</span><span class="download-sub">PDF · Broader design; see snapshot limitations above</span></div>
         </a>
       </div>
     </div>
 
-  </div>
+  </main>
 </body>
 </html>

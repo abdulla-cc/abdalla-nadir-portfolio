@@ -9,11 +9,11 @@ export function Skills() {
         <Reveal>
           <Eyebrow>Skills &amp; Tools</Eyebrow>
           <h2 className="mb-5 text-3xl font-extrabold leading-[1.12] lg:text-[40px]">
-            The stack I work in every day.
+            Tools I use across my projects.
           </h2>
           <p className="mb-6 text-base text-dim">
-            From cleaning raw data to publishing interactive dashboards — I handle each step with
-            precision: BI tools, scripting, query languages, and the connective tissue between them.
+            I use these tools to build interfaces and APIs, work with data, integrate AI models,
+            and test and deploy applications. The projects below show how I apply them.
           </p>
           <div className="flex flex-wrap gap-2">
             {skillTags.map(tag => (
@@ -56,7 +56,7 @@ export function Skills() {
               <div className="mb-4.5 flex h-13 w-13 items-center justify-center rounded-[14px] bg-surface-2 text-gold">
                 <Icon size={26} />
               </div>
-              <h4 className="mb-2 font-display text-lg font-bold">{title}</h4>
+              <h3 className="mb-2 font-display text-lg font-bold">{title}</h3>
               <p className="text-sm leading-[1.6] text-dim">{description}</p>
             </div>
           ))}
