@@ -1,3 +1,7 @@
+-- Academic demo snapshot: import only into a new, disposable database.
+-- Re-importing drops the five named tables and their data.
+-- This export does not include an interviewer table or stored routines.
+
 -- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: JobApplicationSystem
@@ -162,14 +166,14 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER UpdateJobOfferStatusNotification
-AFTER UPDATE ON Job_Offer
+/*!50003 CREATE*/ /*!50003 TRIGGER UpdateJobOfferStatusNotification
+AFTER UPDATE ON `job_offer`
 FOR EACH ROW
 BEGIN
     DECLARE NotificationMessage TEXT;
-    IF NEW.Status <> OLD.Status THEN
+    IF NOT (NEW.Status <=> OLD.Status) THEN
         SET NotificationMessage = CONCAT('Your job offer for Job ID ', NEW.Job_ID, ' is now ', NEW.Status);
-        INSERT INTO Documents (Applicant_ID, Type, Content)
+        INSERT INTO `documents` (Applicant_ID, Type, Content)
         VALUES (NEW.Applicant_ID, 'Notification', NotificationMessage);
     END IF;
 END */;;

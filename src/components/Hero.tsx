@@ -3,11 +3,12 @@ import { Reveal } from './Reveal'
 import { ShaderBackground } from './ui/animated-shader-hero'
 import { useTheme } from '../context/ThemeContext'
 import { asset } from '../lib/asset'
+import { profileStats } from '../data/profile'
 
 const stats = [
-  { n: '3.4', label: 'GPA / 4.0' },
-  { n: '11', label: 'Projects' },
-  { n: '12', label: 'Certifications' },
+  { n: profileStats.cgpa, label: 'CGPA / 4.0' },
+  { n: String(profileStats.projectCount), label: 'Projects' },
+  { n: String(profileStats.credentialCount), label: 'Listed credentials' },
 ]
 
 export function Hero() {
@@ -18,7 +19,10 @@ export function Hero() {
       {/* Animated WebGL starfield in dark mode; ambient gold blobs in light mode.
           mix-blend-screen makes the shader's black background transparent over the navy bg. */}
       {theme === 'dark' ? (
+        <>
         <ShaderBackground className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-60 mix-blend-screen" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-linear-to-r from-bg/85 via-bg/50 to-bg/20" />
+        </>
       ) : (
         <>
           <div className="animate-blob-a pointer-events-none absolute -top-20 -right-15 z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,var(--gold)_0%,transparent_70%)] opacity-[0.14] blur-[30px]" />
@@ -33,9 +37,9 @@ export function Hero() {
             <span className="text-gold">real-world problems</span>.
           </h1>
           <p className="mb-9 max-w-[520px] text-lg leading-[1.7] text-dim">
-            I'm a final-year Computer Science (AI) student at Multimedia University, passionate about
-            machine learning, software engineering, data analysis, and AI engineering. I build
-            end-to-end products with Python, React, FastAPI, SQL, and modern ML tools.
+            I'm a final-year Computer Science (AI) student at Multimedia University, building
+            software with Python, React, FastAPI, SQL, and applied AI. I'm seeking graduate
+            software engineering and AI application development opportunities.
           </p>
           <div className="mb-11 flex flex-wrap justify-center gap-3.5 lg:justify-start">
             <a

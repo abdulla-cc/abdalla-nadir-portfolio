@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 
 type Theme = 'dark' | 'light'
 
@@ -17,14 +17,17 @@ function getInitialTheme(): Theme {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(getInitialTheme)
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    document.documentElement.style.colorScheme = theme
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0e0804' : '#f8f9fa')
+  }, [theme])
+
   const toggle = useCallback(() => {
-    setTheme(prev => {
-      const next = prev === 'light' ? 'dark' : 'light'
-      document.documentElement.setAttribute('data-theme', next)
-      try { localStorage.setItem('theme', next) } catch { /* private mode */ }
-      return next
-    })
-  }, [])
+    const next = theme === 'light' ? 'dark' : 'light'
+    setTheme(next)
+    try { localStorage.setItem('theme', next) } catch { /* private mode */ }
+  }, [theme])
 
   return <ThemeContext.Provider value={{ theme, toggle }}>{children}</ThemeContext.Provider>
 }

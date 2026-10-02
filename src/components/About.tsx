@@ -3,6 +3,7 @@ import { Reveal } from './Reveal'
 import { Eyebrow } from './Eyebrow'
 import { TerminalCard } from './TerminalCard'
 import { achievements } from '../data/skills'
+import { profileStats } from '../data/profile'
 
 const socials = [
   { href: 'mailto:abdullah130306@gmail.com', label: 'Email Abdalla', icon: Mail },
@@ -44,10 +45,10 @@ export function About() {
             usable interfaces, testing, and deployment.
           </p>
           <p className="mb-4 text-base text-dim">
-            With a 3.4 GPA, Dean's List recognition, and certifications from Microsoft, Google,
-            Cisco, and Huawei, I'm ready to contribute to a technical team from day one. I'm
-            currently seeking internship opportunities in software engineering, ML/AI engineering,
-            data analysis, or business intelligence.
+            With a {profileStats.cgpa} CGPA, Dean's List recognition, and coursework and credentials
+            across AI, networking, and analytics, I'm building toward a software engineering career.
+            I'm interested in graduate roles where I can develop reliable applications and apply
+            AI and machine learning to practical problems.
           </p>
           <div className="mt-7 grid gap-4 sm:grid-cols-2">
             {achievements.map(({ icon: Icon, title, description }) => (
@@ -56,7 +57,7 @@ export function About() {
                 className="rounded-[14px] border border-line-soft bg-card p-5 transition-all hover:-translate-y-1 hover:border-gold hover:shadow-theme"
               >
                 <Icon size={26} className="mb-3 text-gold" />
-                <h4 className="mb-1 font-display text-[17px] font-bold">{title}</h4>
+                <h3 className="mb-1 font-display text-[17px] font-bold">{title}</h3>
                 <p className="text-[13.5px] leading-[1.55] text-dim">{description}</p>
               </div>
             ))}

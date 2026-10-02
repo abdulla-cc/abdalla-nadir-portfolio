@@ -3,6 +3,7 @@ import type { LucideIcon } from 'lucide-react'
 import { Reveal } from './Reveal'
 import { Eyebrow } from './Eyebrow'
 import { ContactForm } from './ContactForm'
+import { profileStats } from '../data/profile'
 
 interface ContactItem {
   icon: LucideIcon
@@ -23,13 +24,13 @@ const eduItems = [
     date: 'MAR 2024 — MAR 2027',
     title: 'BSc Computer Science (Artificial Intelligence)',
     org: 'Multimedia University, Melaka, Malaysia',
-    note: "GPA 3.4 · Dean's List · Arabic Culture Society — High Committee",
+    note: `CGPA ${profileStats.cgpa} · Dean's List · Arabic Culture Society — High Committee`,
   },
   {
     date: '2025 — 2026',
-    title: 'Industry Certifications',
-    org: 'Microsoft · Google · Cisco · Huawei · IBM',
-    note: 'Power BI, Google Analytics, CCNA, HCIA-AI, Data Analyst track.',
+    title: 'Certifications & Courses',
+    org: 'Google · Cisco · Huawei · IBM · Anthropic',
+    note: 'Analytics, introductory networking, AI, data visualization, and developer tools. See the six listed credentials above.',
   },
   {
     date: 'SELF-DIRECTED',
@@ -42,8 +43,8 @@ const eduItems = [
 export function Contact() {
   return (
     <section id="contact" className="pt-20 pb-24">
-      <div className="mx-auto grid max-w-[1200px] gap-14 px-6 md:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12">
-        <Reveal>
+      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-14 px-6 md:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12">
+        <Reveal className="min-w-0">
           <Eyebrow>Get in touch</Eyebrow>
           <h2 className="mb-7 text-[34px] font-extrabold leading-[1.15]">Contact</h2>
           <div className="flex flex-col gap-3">
@@ -55,7 +56,7 @@ export function Contact() {
                   </div>
                   <div className="flex min-w-0 flex-col gap-0.5">
                     <span className="text-xs font-semibold uppercase tracking-[0.08em] text-dim">{label}</span>
-                    <span className="text-[15.5px] font-semibold break-words text-text">{value}</span>
+                    <span className="text-[15.5px] font-semibold [overflow-wrap:anywhere] text-text">{value}</span>
                   </div>
                 </>
               )
@@ -84,7 +85,7 @@ export function Contact() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} className="min-w-0">
           <Eyebrow>Background</Eyebrow>
           <h2 className="mb-7 text-[34px] font-extrabold leading-[1.15]">Education</h2>
           <div className="relative border-l-2 border-line pl-7">

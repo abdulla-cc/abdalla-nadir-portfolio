@@ -28,7 +28,7 @@ export function PersonalProjects({ onOpenCaseStudy }: { onOpenCaseStudy: (id: st
               {project.image ? (
                 <img
                   src={asset(project.image)}
-                  alt={`${project.title} demo`}
+                  alt={`${project.title} pipeline illustration`}
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
@@ -71,7 +71,8 @@ export function PersonalProjects({ onOpenCaseStudy }: { onOpenCaseStudy: (id: st
                 </div>
               )}
 
-              <div className="mt-2 flex gap-4.5 border-t border-line-soft pt-4">
+              <p className="text-xs text-dim">Illustration of the pipeline; see the repository for implementation.</p>
+              <div className="mt-2 flex flex-wrap gap-4.5 border-t border-line-soft pt-4">
                 {project.links.map(link => (
                   <a
                     key={link.href}
